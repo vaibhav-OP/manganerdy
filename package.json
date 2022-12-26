@@ -1,0 +1,18 @@
+{
+  "name": "apexmanga",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
+    "dev": "concurrently \"yarn workspace client dev\" \"yarn workspace server dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
