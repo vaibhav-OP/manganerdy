@@ -38,3 +38,6 @@ src/public/images/*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dist
+/dist
