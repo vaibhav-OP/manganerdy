@@ -33,6 +33,7 @@ async function getLatestUpdatedComics() {
   })
   .then(res => res.json())
   .catch((error) => {
+    console.log(error)
   });
 
   if(!response) return []
@@ -48,6 +49,7 @@ async function getLatestComics() {
   })
   .then(res => res.json())
   .catch((error) => {
+    console.log(error)
   });
 
   if(!response) return []
@@ -67,6 +69,7 @@ async function getMostViewedComics() {
   })
   .then(res => res.json())
   .catch((error) => {
+    console.log(error)
   });
 
   if(!response) return []

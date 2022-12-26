@@ -1,6 +1,6 @@
 import express from "express";
-import comicModel from "../models/comic.model";
-import comic from "../models/comic.model"
+import comicSchema from "../models/comic.model";
+import chpatersSchema from "../models/comic_chapters.model";
 
 const router: express.Router = express.Router();
 
@@ -8,7 +8,7 @@ router.post("/most_viewed", async(req, res) => {
     const { limit, page } = req.body
 
     try {
-        const data = await comic.find()
+        const data = await comicSchema.find()
                                 .select('title profilePhotoLocation')
                                 .sort({view: -1})
                                 .skip(limit * page)
@@ -27,7 +27,7 @@ router.post("/latest_updated", async(req, res) => {
     const { limit, page } = req.body;
 
     try {
-        const comicData = await comic.find()
+        const comicData = await comicSchema.find()
                                 .select('title authorName profilePhotoLocation')
                                 .sort({updatedAt: -1})
                                 .limit(limit)
@@ -45,7 +45,7 @@ router.post("/latest_updated", async(req, res) => {
 
 router.post("/latest_created", async(req, res) => {
     try {
-        const comicData = await comic.find()
+        const comicData = await comicSchema.find()
                                 .select('title profilePhotoLocation description')
                                 .sort({createdAt: -1})
                                 .limit(6)
@@ -61,14 +61,16 @@ router.post("/latest_created", async(req, res) => {
 
 router.post("/comic", async(req, res) => {
     const { id } = req.body;
-
+    const chapter = new chpatersSchema()
     try {
-        const comicData = await comic.findById(id)
+        const comicData = await comicSchema.findById(id)
                                     .select('-view')
+                                    .populate("chapters", "chapters.name")
                                     .exec();
 
         res.send({ status: "ok", data: comicData})
     } catch (err) {
+        console.log("error", err)
         res.send({ status: "error" });
     }
 })
@@ -94,7 +96,7 @@ router.get("/comic_name/:id", async(req,res) => {
     if(!id) return res.send({ status: "error" });
 
     try {
-        const comic = await comicModel.findById(id)
+        const comic = await comicSchema.findById(id)
         .select("title")
         .exec();
 
@@ -117,7 +119,7 @@ router.get("/search", async(
 
     if(!title) return res.send({ status: "error"});
     try {
-        const comics = await comicModel.find({ title: { $regex: title, '$options' : 'i' } })
+        const comics = await comicSchema.find({ title: { $regex: title, '$options' : 'i' } })
         .select("title profilePhotoLocation authorName")
         .exec();
 

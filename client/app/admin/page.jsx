@@ -1,8 +1,8 @@
 "use client"
 import { useState } from "react";
 
-import SidePanel from "./sidePanel";
-import MainScreen from "./mainScreen";
+import SidePanel from "../../components/admin/sidePanel";
+import MainScreen from "../../components/admin/mainScreen";
 
 export default function() {
     const [page, setPage] = useState("addPage")

@@ -12,15 +12,13 @@ function ComicContainer({ comic }) {
         <div className="w-[150px] snap-start">
             <div className="rounded-md shadow-xl overflow-hidden h-[197px] w-[150px] hover:cursor-pointer relative">
                 <Link href={`/comic/${comic._id}`}>
-                    <>
-                        {!isLoaded && <ImageSkeleton />}
-                        <Image
-                            src={comic.profilePhotoLocation}
-                            fill
-                            alt={comic.title}
-                            onLoad={() => setIsLoaded(true)}
-                        />
-                    </>
+                    {!isLoaded && <ImageSkeleton />}
+                    <Image
+                        src={comic.profilePhotoLocation}
+                        fill
+                        alt={comic.title}
+                        onLoad={() => setIsLoaded(true)}
+                    />
                 </Link>
             </div>
             <Link href={`/comic/${comic._id}`}>

@@ -1,7 +1,7 @@
 "use client"
 
-import AddComic from "./addComic";
-import AddChapter from "./addChapter";
+import AddComic from "./pages/addComic";
+import AddChapter from "./pages/addChapter";
 
 export default function({ page }) {
     return (

@@ -1,4 +1,3 @@
-"use client"
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
@@ -77,16 +76,16 @@ function UserContainer({ user, handleSignOut, handleToggle }) {
             {
             user ?
                 <ul>
-                    <li><Link href="/dashboard"><span>Dashboard</span></Link></li>
+                    <li><Link href="/dashboard">Dashboard</Link></li>
                     <hr />
                     <li><button onClick={handleSignOut}>Sign Out</button></li>
                 </ul>
                 :
                 <ul className="gap-2">
 
-                    <li><Link href="/auth/sign-in"><span>Sign In</span></Link></li>
+                    <li><Link href="/auth/sign-in">Sign In</Link></li>
                     <hr />
-                    <li><Link href="/auth/sign-up"><span>Sign Up</span></Link></li>
+                    <li><Link href="/auth/sign-up">Sign Up</Link></li>
                 </ul>
             }
         </div>

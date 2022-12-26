@@ -25,7 +25,7 @@ export default function LatestCreated({ latestComics }) {
             ) : (
                 <div className="flex justify-center items-center flex-col">
                     <h1 className="font-bold text-2xl">oops!! No Comic Found</h1>
-                    <span>Please try refreshing the page.</span>
+                    <span>Please try reloading the web.</span>
                 </div>
             )
             }

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import chapters from "./comic_chapters.model";
 
 const comicSchema = new mongoose.Schema({
     title: {
@@ -21,7 +22,7 @@ const comicSchema = new mongoose.Schema({
     genre: [String],
     chapters: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Chapters"
+      ref: "chapters"
     },
     view: {
       type: Number,

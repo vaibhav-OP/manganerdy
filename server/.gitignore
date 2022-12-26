@@ -40,4 +40,4 @@ src/public/images/*
 next-env.d.ts
 
 # dist
-/dist
+dist/

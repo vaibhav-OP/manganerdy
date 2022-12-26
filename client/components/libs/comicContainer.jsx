@@ -13,15 +13,13 @@ export default function({ comic }) {
         <div className="flex flex-row sm:w-[350px] w-full gap-2 p-3">
             <div className="relative w-[120px] h-[167px] shadow-2xl hover:cursor-pointer rounded-lg overflow-hidden">
                 <Link href={`/comic/${comic._id}`}>
-                    <>
-                        {!isLoaded && <ImageSkeleton /> }
-                        <Image
-                            src={comic.profilePhotoLocation}
-                            alt={comic.title}
-                            fill
-                            onLoad={() => setIsLoaded(true)}
-                        />
-                    </>
+                    {!isLoaded &&<ImageSkeleton />}
+                    <Image
+                        src={comic.profilePhotoLocation}
+                        alt={comic.title}
+                        fill
+                        onLoad={() => setIsLoaded(true)}
+                    />
                 </Link>
             </div>
             <div className="sm:w-2/4 w-[calc(100%-120px)] font-poppin text-[#242424] dark:text-white/80 flex flex-col justify-between">

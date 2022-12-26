@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 
-import GenreField from "./genre";
+import GenreField from "./formFlields/genre";
 
 export default function() {
     const router = useRouter()
