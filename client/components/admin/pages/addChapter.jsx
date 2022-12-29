@@ -25,7 +25,7 @@ export default function() {
     }
     return (
         <>
-            <h1 className="text-2xl">Add Comic</h1>
+            <h1 className="text-2xl">Add Chapter</h1>
             <form onSubmit={handleSubmit}
                 className="flex flex-col gap-2 mt-5">
                 <input

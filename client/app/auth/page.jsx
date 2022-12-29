@@ -77,7 +77,7 @@ function SignUpForm({ notify, handleChangeForm }) {
                     onClick={handleChangeForm}>Sign In</button>
             </div>
         </div>
-        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch'>
+        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch dark:bg-[#15202B]'>
             <h1 className='font-bold text-3xl text-center'>Sign up</h1>
             <form onSubmit={signUp} className="gap-3 flex flex-col">
                 <input
@@ -153,7 +153,7 @@ function SignInForm({ notify, handleChangeForm }) {
                     onClick={handleChangeForm}>Sign Up</button>
             </div>
         </div>
-        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch'>
+        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch dark:bg-[#15202B]'>
             <h1 className='font-bold text-3xl text-center'>Sign in</h1>
             <form onSubmit={signIn} className="gap-3 flex flex-col">
                 <input
