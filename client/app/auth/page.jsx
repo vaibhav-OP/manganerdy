@@ -3,10 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useCallback } from "react";
 
-import toast from "../../../components/Toast";
+import toast from "../../components/Toast";
 
 export default function SignIn() {
-    const router = useRouter();
     const [form, changeForm] = useState(0);
 
     const notify = useCallback((type, message) => {
@@ -22,30 +21,18 @@ export default function SignIn() {
     }
 
     return (
-        <div className='flex justify-center items-center min-h-[calc(100vh-240px)] md:flex-row flex-col md:px-0 px-5'>
-            <div className='md:w-1/4 w-full bg-themeColor px-8 py-14 shadow-2xl text-white items-center flex gap-10 flex-col self-stretch rounded-tl-lg rounded-bl-lg'>
-                <h1 className='font-bold text-3xl text-center'>Hello, there</h1>
-                <div>
-                    <p>Enter your details and start reading mangas with us.</p>
-                </div>
-                <div className='font-bold'>
-                    <button
-                        className='uppercase border-white border py-1 px-4 rounded-lg hover:bg-white hover:text-theme transition-all'
-                        onClick={handleChangeForm}>Sign Up</button>
-                </div>
-            </div>
-            <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch'>
-                { form === 0 ?
-                    <SignInForm notify={notify} handleChangeForm={handleChangeForm}/>
-                    :
-                    <SignUpForm notify={notify} handleChangeForm={handleChangeForm}/>
-                }
-            </div>
+        <div className='flex justify-center items-center min-h-[calc(100vh-240px)] md:flex-row flex-col-reverse md:px-0 px-5 transition-all'>
+            { form === 0 ?
+                <SignInForm notify={notify} handleChangeForm={handleChangeForm}/>
+                :
+                <SignUpForm notify={notify} handleChangeForm={handleChangeForm}/>
+            }
         </div>
     )
 }
 
-function SignUpForm({ notify }) {
+function SignUpForm({ notify, handleChangeForm }) {
+    const router = useRouter();
     const [user_name, setUser_name] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -79,6 +66,18 @@ function SignUpForm({ notify }) {
 
     return (
         <>
+        <div className='md:w-1/4 w-full bg-themeColor px-8 py-14 shadow-2xl text-white items-center flex gap-10 flex-col self-stretch rounded-tl-lg rounded-bl-lg'>
+            <h1 className='font-bold text-3xl text-center'>Hello, there</h1>
+            <div>
+                <p>Enter your details and start reading mangas with us.</p>
+            </div>
+            <div className='font-bold'>
+                <button
+                    className='uppercase border-white border py-1 px-4 rounded-lg hover:bg-white hover:text-theme transition-all'
+                    onClick={handleChangeForm}>Sign In</button>
+            </div>
+        </div>
+        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch'>
             <h1 className='font-bold text-3xl text-center'>Sign up</h1>
             <form onSubmit={signUp} className="gap-3 flex flex-col">
                 <input
@@ -105,11 +104,13 @@ function SignUpForm({ notify }) {
                     value="sign up"
                     className='bg-themeColor shadow-lg text-white px-1 py-2 uppercase font-bold'/>
             </form>
+        </div>
         </>
     )
 }
 
-function SignInForm({ notify }) {
+function SignInForm({ notify, handleChangeForm }) {
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -141,6 +142,18 @@ function SignInForm({ notify }) {
     }
     return (
         <>
+        <div className='md:w-1/4 w-full bg-themeColor px-8 py-14 shadow-2xl text-white items-center flex gap-10 flex-col self-stretch rounded-tl-lg rounded-bl-lg'>
+            <h1 className='font-bold text-3xl text-center'>Welcome again!</h1>
+            <div>
+                <p>Too keep reading your favture mangas, enter your details.</p>
+            </div>
+            <div className='font-bold'>
+                <button
+                    className='uppercase border-white border py-1 px-4 rounded-lg hover:bg-white hover:text-theme transition-all'
+                    onClick={handleChangeForm}>Sign Up</button>
+            </div>
+        </div>
+        <div className='flex gap-7 flex-col shadow-2xl px-8 rounded-tr-lg rounded-br-lg justify-center self-stretch'>
             <h1 className='font-bold text-3xl text-center'>Sign in</h1>
             <form onSubmit={signIn} className="gap-3 flex flex-col">
                 <input
@@ -161,6 +174,7 @@ function SignInForm({ notify }) {
                     value="Sign in"
                     className='bg-themeColor shadow-lg text-white px-1 py-2 uppercase font-bold'/>
             </form>
+        </div>
         </>
     )
 }

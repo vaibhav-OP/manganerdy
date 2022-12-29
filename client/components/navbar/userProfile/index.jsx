@@ -83,9 +83,9 @@ function UserContainer({ user, handleSignOut, handleToggle }) {
                 :
                 <ul className="gap-2">
 
-                    <li><Link href="/auth/sign-in">Sign In</Link></li>
+                    <li><Link href="/auth">Sign In</Link></li>
                     <hr />
-                    <li><Link href="/auth/sign-up">Sign Up</Link></li>
+                    <li><Link href="/auth">Sign Up</Link></li>
                 </ul>
             }
         </div>
