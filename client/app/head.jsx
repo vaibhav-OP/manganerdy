@@ -1,5 +1,3 @@
 export default function() {
-    return (
-      <title>Apex Manga</title>
-    )
+    return <title>Apex Manga</title>
   }

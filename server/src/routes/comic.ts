@@ -28,7 +28,7 @@ router.post("/latest_updated", async(req, res) => {
 
     try {
         const comicData = await comicSchema.find()
-                                .select('title authorName profilePhotoLocation')
+                                .select('title authorName profilePhotoLocation genre')
                                 .sort({updatedAt: -1})
                                 .limit(limit)
                                 .skip(limit * page)
@@ -108,20 +108,22 @@ router.get("/comic_name/:id", async(req,res) => {
 })
 
 interface Query {
-  title: string;
+  title: string,
+  genre: string
 }
 
 router.get("/search", async(
         req: express.Request,
         res: express.Response
     ) => {
-    const { title } = req.query as unknown as Query;
+    let { title } = req.query as unknown as Query;
 
     if(!title) return res.send({ status: "error"});
+
     try {
-        const comics = await comicSchema.find({ title: { $regex: title, '$options' : 'i' } })
-        .select("title profilePhotoLocation authorName")
-        .exec();
+        let comics = await comicSchema.find({ $text: { $search: title } })
+                                        .select("title profilePhotoLocation authorName")
+                                        .exec();
 
         res.send({ status: "ok", data: comics })
     } catch(e) {

@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { FiUsers } from "react-icons/fi";
 import ImageSkeleton from "./imageSkeleton";
+import { IoMdPricetag } from "react-icons/io";
 
 export default function({ comic }) {
     if(!comic) return
@@ -26,9 +27,19 @@ export default function({ comic }) {
                 <Link href={`/comic/${comic._id}`}>
                     <h6 className="font-bold text-base w-full overflow-hidden whitespace-nowrap text-ellipsis hover:cursor-pointer">{comic.title}</h6>
                 </Link>
-                <div className="text-sm flex items-center gap-1">
-                    <FiUsers />
-                    <div className="overflow-hidden whitespace-nowrap text-ellipsis"><span>{comic.authorName}</span></div>
+                <div className="text-sm flex gap-1 flex-col">
+                    <div className="flex items-center gap-1">
+                        <IoMdPricetag />
+                        {
+                        comic.genre?.map((tag, index) => {
+                            return <Link className="overflow-hidden whitespace-nowrap text-ellipsis" key={index} href={"/search?genre="+tag}>{tag}</Link>
+                        })
+                        }
+                    </div>
+                    <div className="flex items-center gap-1 font-bold">
+                        <FiUsers />
+                        <div className="overflow-hidden whitespace-nowrap text-ellipsis"><span>{comic.authorName}</span></div>
+                    </div>
                 </div>
             </div>
         </div>
