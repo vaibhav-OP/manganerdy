@@ -8,4 +8,4 @@ body:
   - type: textarea
     attributes:
       label: To Reproduce
-      description: Steps to reproduce the behavior:
+      description: 'Steps to reproduce the behavior:'
