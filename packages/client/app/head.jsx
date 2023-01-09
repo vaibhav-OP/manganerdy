@@ -1,3 +1,8 @@
 export default function() {
-    return <title>Apex Manga</title>
+    return (
+    <>
+      <title>Apex Manga</title>
+      <meta content="width=device-width, initial-scale=1" name="viewport" />
+    </>
+    )
   }
