@@ -34,6 +34,7 @@ async function getLatestUpdatedComics() {
   .then(res => res.json())
   .catch((error) => {
     console.log(error)
+    return []
   });
 
   if(!response) return []
@@ -42,7 +43,7 @@ async function getLatestUpdatedComics() {
 
 async function getLatestComics() {
   const response = await fetch("http://localhost:3001/comics/latest_created", {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
@@ -50,6 +51,7 @@ async function getLatestComics() {
   .then(res => res.json())
   .catch((error) => {
     console.log(error)
+    return []
   });
 
   if(!response) return []
@@ -70,6 +72,7 @@ async function getMostViewedComics() {
   .then(res => res.json())
   .catch((error) => {
     console.log(error)
+    return []
   });
 
   if(!response) return []

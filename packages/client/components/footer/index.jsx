@@ -11,9 +11,9 @@ export default function Footer() {
                     src="/logo.png"
                     alt="Apex Manga - Logo"/>
                 <ul className="flex font-poppin">
+                <li className="my-3 mx-5"><Link href="/">Home</Link></li>
                     <li className="my-3 mx-5"><Link href="/dmca">DMCA</Link></li>
                     <li className="my-3 mx-5"><Link href="/privacy-policy">Privacy Policy</Link></li>
-                    <li className="my-3 mx-5"><Link href="/">Home</Link></li>
                 </ul>
             </div>
             <div className="flex flex-col gap-2 py-3 opacity-50 items-center px-2 text-center">

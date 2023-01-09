@@ -4,8 +4,9 @@ import chpatersSchema from "../models/comic_chapters.model";
 
 const router: express.Router = express.Router();
 
-router.post("/most_viewed", async(req, res) => {
-    const { limit, page } = req.body
+router.get("/most_viewed", async(req, res) => {
+    const limit = 10,
+        page = 0;
 
     try {
         const data = await comicSchema.find()
@@ -43,7 +44,7 @@ router.post("/latest_updated", async(req, res) => {
     }
 });
 
-router.post("/latest_created", async(req, res) => {
+router.get("/latest_created", async(req, res) => {
     try {
         const comicData = await comicSchema.find()
                                 .select('title profilePhotoLocation description')
@@ -55,7 +56,7 @@ router.post("/latest_created", async(req, res) => {
     res.send({ status: "ok", data: comicData})
     } catch (error) {
         console.log(error)
-        res.send({ status: "error" })
+        res.status(403).send({ status: "error" })
     }
 })
 

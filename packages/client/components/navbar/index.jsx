@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import ThemeToggleBtn from "./themeToggleBtn";
 import UserProfile from "./userProfile";
@@ -36,7 +36,7 @@ export default function Navbar() {
     }
     return (
         <div>
-            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr,auto] items-center fixed z-10">
+            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr] items-center fixed z-10">
                 <Link href="/" className="cursor-pointer flex">
                     <Image
                         width={120}
@@ -54,7 +54,7 @@ export default function Navbar() {
                         placeholder="Search Comic"
                         onKeyDown={handleSubmit}/>
                 </div>
-                <UserProfile />
+                {/* <UserProfile /> */}
             </div>
             <ToastContainer
                 position="top-right"

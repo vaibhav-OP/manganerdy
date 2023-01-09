@@ -9,7 +9,7 @@ const mongooseUrl: string = "mongodb://127.0.0.1:27017/apex_manga";
 
 // all middleware
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ["http://localhost:3000", "http://107.189.12.106:3000"],
     preflightContinue: true,
     credentials: true,
 }));

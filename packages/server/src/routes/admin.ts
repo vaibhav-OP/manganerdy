@@ -1,6 +1,7 @@
 import fs from "fs";
 import express from "express";
 import request from "request";
+import { v4 as uuidv4 } from 'uuid';
 
 import comicModel from "../models/comic.model";
 
@@ -16,6 +17,30 @@ let download = function(uri: string, filename: string): Promise<string>{
 };
 let uid = (function(){let id=0;return function(){if(arguments[0]===0)id=0;return id++;}})();
 
+const admins = [
+    {
+        user_name: "vaibhav",
+        user_passwd: "test"
+    },
+    {
+        user_name: "rogan",
+        user_passwd: "testasda"
+    }
+]
+
+Router.get("/verify", async(req,res) => {
+    const {
+        user_name,
+        user_passwd
+    } = req.query
+
+    const adminData = admins.find(user => user.user_name == user_name)
+
+    if(!adminData) return res.status(401).send();
+    if (user_name == adminData.user_name && user_passwd == adminData.user_passwd) return res.status(200).send();
+    res.status(401).send()
+})
+
 Router.post("/comic", async(req, res) => {
     const {
         title,
@@ -25,7 +50,7 @@ Router.post("/comic", async(req, res) => {
         genre,
     } = req.body
 
-    const imageID = uid();
+    const imageID = uuidv4();
     const extension = coverPageURL.split('.').pop();
 
     const filename = imageID + "." + extension
