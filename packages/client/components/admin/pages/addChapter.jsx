@@ -8,7 +8,7 @@ export default function() {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        const response = await fetch("http://localhost:3001/admin/add-comic", {
+        const response = await fetch(NEXT_PUBLIC_serverURL + "/admin/add-comic", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

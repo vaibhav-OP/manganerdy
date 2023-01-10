@@ -21,7 +21,7 @@ export default async function() {
 }
 
 async function getLatestUpdatedComics() {
-  const response = await fetch("http://localhost:3001/comics/latest_updated", {
+  const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_updated", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -32,34 +32,29 @@ async function getLatestUpdatedComics() {
     })
   })
   .then(res => res.json())
-  .catch((error) => {
-    console.log(error)
-    return []
-  });
+  .catch((error) => {});
 
   if(!response) return []
   return response.data
 }
 
 async function getLatestComics() {
-  const response = await fetch("http://localhost:3001/comics/latest_created", {
+
+  const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_created", {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
   })
   .then(res => res.json())
-  .catch((error) => {
-    console.log(error)
-    return []
-  });
+  .catch((error) => {});
 
   if(!response) return []
   return response.data
 }
 
 async function getMostViewedComics() {
-  const response = await fetch("http://localhost:3001/comics/most_viewed", {
+  const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/most_viewed", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -70,10 +65,7 @@ async function getMostViewedComics() {
     })
   })
   .then(res => res.json())
-  .catch((error) => {
-    console.log(error)
-    return []
-  });
+  .catch((error) => {});
 
   if(!response) return []
   return response.data

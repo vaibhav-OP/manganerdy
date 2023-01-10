@@ -8,7 +8,7 @@ export default function AdminLogin({ setAdmin, notify }) {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:3001/admin/verify?user_name=${user_name}&user_passwd=${user_passwd}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_serverURL}/admin/login?user_name=${user_name}&user_passwd=${user_passwd}`, {
             method: "GET"
         })
 

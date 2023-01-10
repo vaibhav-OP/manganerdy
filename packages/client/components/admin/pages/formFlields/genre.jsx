@@ -6,11 +6,17 @@ export default function({ genre, setGenre }) {
 
     function handleKeyDown(e) {
         if(e.key !== "Enter" || newValue === "") return;
+        e.preventDefault();
         let newTag = newValue.trim().charAt(0).toUpperCase() + newValue.trim().slice(1)
 
         if(genre.includes(newTag)) return;
 
-        setGenre(old => [...old, newTag]);
+        if(newTag.includes(" ")) {
+            newTag = newTag.split(" ")
+            setGenre(old => [...old, ...newTag]);
+        } else {
+            setGenre(old => [...old, newTag]);
+        }
         setNewValue("");
     }
 

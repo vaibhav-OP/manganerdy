@@ -1,11 +1,12 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
+dotenv.config({ path: '.env.local' })
 const app = express();
-const PORT = process.env.PORT || 3001;
-const mongooseUrl: string = "mongodb://127.0.0.1:27017/apex_manga";
+const PORT = process.env.PORT || 8080;
 
 // all middleware
 app.use(cors({
@@ -19,9 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 // connecting mongoose from the url
-mongoose.connect(mongooseUrl, () => {
-    console.log("mongoose connected.");
-})
+mongoose.set('strictQuery', false);
+mongoose
+    .connect(process.env.mongoURL)
+    .then(() => console.log('SUCCESS CONNECTED TO THE DATABASE!'))
+    .catch((error) => {
+        console.log(error)
+        console.log('SOMETHING WENT WRONG WHILE CONNECTING TO THE DATABASE!');
+        process.exit(1);
+    })
 
 // using all the routes
 import authRoute from "./routes/auth";

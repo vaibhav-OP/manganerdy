@@ -69,6 +69,7 @@ router.post("/comic", async(req, res) => {
                                     .populate("chapters", "chapters.name")
                                     .exec();
 
+        if(!comicData) return res.send({ status: "error" });
         res.send({ status: "ok", data: comicData})
     } catch (err) {
         console.log("error", err)

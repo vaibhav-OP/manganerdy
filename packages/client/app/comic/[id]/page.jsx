@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
 import SearchForm from "./chapaterSeachForm"
@@ -59,8 +60,7 @@ export default async function({ params }) {
 }
 
 async function getComicData(id) {
-
-    const response = await fetch(`http://localhost:3001/comics/comic`, {
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -70,11 +70,8 @@ async function getComicData(id) {
         })
     })
     .then(res => res.json())
-    .catch(error => {
+    .catch(error => {})
 
-    })
-
-    console.log(response.data.chapters);
-
+    if(response.status == "error") notFound()
     return response.data;
 }

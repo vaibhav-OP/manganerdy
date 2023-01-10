@@ -15,20 +15,15 @@ let download = function(uri: string, filename: string): Promise<string>{
         });
     })
 };
-let uid = (function(){let id=0;return function(){if(arguments[0]===0)id=0;return id++;}})();
 
 const admins = [
     {
-        user_name: "vaibhav",
-        user_passwd: "test"
-    },
-    {
-        user_name: "rogan",
-        user_passwd: "testasda"
+        user_name: process.env.user_name,
+        user_passwd: process.env.user_passwrd
     }
 ]
 
-Router.get("/verify", async(req,res) => {
+Router.get("/login", async(req,res) => {
     const {
         user_name,
         user_passwd
