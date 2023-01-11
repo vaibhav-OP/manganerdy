@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 
 import toast from "../../Toast";
 
-export default function() {
+export default function UserProfileBtn() {
     const notify = useCallback((type, message) => {
         toast({ type, message });
       }, []);

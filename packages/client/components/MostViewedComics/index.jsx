@@ -28,7 +28,7 @@ function ComicContainer({ comic }) {
     )
 }
 
-export default function({ mostViewedComics }) {
+export default function MostViewed({ mostViewedComics }) {
     const wrapperUl = useRef(0);
 
     function moveRight() {

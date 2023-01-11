@@ -3,11 +3,11 @@ import comic from "./comic.model";
 
 const { Schema } = mongoose;
 
-const comic_chapterSchema = new Schema({
+const comicChapterSchema = new Schema({
     chapters: [{
         name: String,
         url: [String],
     }],
 })
 
-export default mongoose.model("chapters", comic_chapterSchema)
+export default mongoose.model("chapters", comicChapterSchema)

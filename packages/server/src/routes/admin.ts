@@ -7,11 +7,11 @@ import comicModel from "../models/comic.model";
 
 const Router: express.Router = express.Router()
 
-let download = function(uri: string, filename: string): Promise<string>{
+const download = (uri: string, filename: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        request.head(uri, function(err, res, body){
+        request.head(uri, (err, res, body) => {
             if(err)return reject("error");
-            request(uri).pipe(fs.createWriteStream(filename)).on("close", function(){resolve("done")});
+            request(uri).pipe(fs.createWriteStream(filename)).on("close", () => {resolve("done")});
         });
     })
 };
@@ -29,10 +29,10 @@ Router.get("/login", async(req,res) => {
         user_passwd
     } = req.query
 
-    const adminData = admins.find(user => user.user_name == user_name)
+    const adminData = admins.find(user => user.user_name === user_name)
 
     if(!adminData) return res.status(401).send();
-    if (user_name == adminData.user_name && user_passwd == adminData.user_passwd) return res.status(200).send();
+    if (user_name === adminData.user_name && user_passwd === adminData.user_passwd) return res.status(200).send();
     res.status(401).send()
 })
 
@@ -60,7 +60,7 @@ Router.post("/comic", async(req, res) => {
                 genre
             });
 
-            comic.save(function(err, doc) {
+            comic.save((err, doc) => {
                 if (err) return console.error(err);
                 console.log(comic.title + "was added to the database sucessfully.");
                 res.send({ status: "ok", data: comic._id})

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation"
 
-export default function() {
+export default function SearchBar() {
     const router = useRouter();
     const [searchValue, setSearchValue] = useState("");
 

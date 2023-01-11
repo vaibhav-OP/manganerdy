@@ -4,7 +4,7 @@ import { useState } from "react";
 import LoadMore from "./LoadMore";
 import ComicContainer from "../libs/comicContainer";
 
-export default function({ preRenderedData }) {
+export default function LatestUpdated({ preRenderedData }) {
     const [comicArray, setComicArray] = useState(preRenderedData);
 
     return (

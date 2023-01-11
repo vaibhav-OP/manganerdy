@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function() {
+export default function AddChapter() {
     const [id, setId] = useState("");
     const [url, setUrl] = useState("");
     const [name, setName] = useState("");

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 
-export default function({ setComicArray }) {
+export default function LoadMore({ setComicArray }) {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [hasFinished, setHasFinished] = useState(false);

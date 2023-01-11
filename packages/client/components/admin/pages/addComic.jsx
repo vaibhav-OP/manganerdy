@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import GenreField from "./formFlields/genre";
 
-export default function() {
+export default function AddComic() {
     const router = useRouter();
 
     const formRef = useRef(null)

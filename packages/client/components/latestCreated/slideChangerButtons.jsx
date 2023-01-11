@@ -1,6 +1,6 @@
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight  } from "react-icons/md";
 
-export default function({ currentSlide, setcurrentSlide, ulElement }) {
+export default function SliderChangeButton({ currentSlide, setcurrentSlide, ulElement }) {
     function moveLeft() {
         if(!ulElement.current) return;
 

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri"
 
-export default function({ genre, setGenre }) {
+export default function GenreField({ genre, setGenre }) {
     const [newValue, setNewValue] = useState("");
 
     function handleKeyDown(e) {

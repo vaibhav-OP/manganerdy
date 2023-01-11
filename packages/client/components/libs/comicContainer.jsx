@@ -7,9 +7,10 @@ import { FiUsers } from "react-icons/fi";
 import ImageSkeleton from "./imageSkeleton";
 import { IoMdPricetag } from "react-icons/io";
 
-export default function({ comic }) {
-    if(!comic) return
+export default function ComicContainer({ comic }) {
     const [isLoaded, setIsLoaded] = useState(false);
+
+    if(!comic) return;
     return (
         <div className="flex flex-row sm:w-[350px] w-full gap-2 p-3">
             <div className="relative w-[120px] h-[167px] shadow-2xl hover:cursor-pointer rounded-lg overflow-hidden">

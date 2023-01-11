@@ -17,7 +17,7 @@ export default function Footer() {
                 </ul>
             </div>
             <div className="flex flex-col gap-2 py-3 opacity-50 items-center px-2 text-center">
-                <p>All the comics on this website are only previews of the original comics, there may be many language errors, character names, and story lines. For the original version, please buy the comic if it's available in your city.</p>
+                <p>All the comics on this website are only previews of the original comics, there may be many language errors, character names, and story lines. For the original version, please buy the comic if it&apos;s available in your city.</p>
                 <p>© Apexmanga.com</p>
             </div>
         </div>

@@ -1,4 +1,4 @@
-export default function() {
+export default function ThemeToggleBtn() {
 	function toggleTheme() {
 		const bodyEl = document.body
 		if(bodyEl.classList.contains("dark")) {

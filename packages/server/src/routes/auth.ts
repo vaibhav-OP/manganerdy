@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import userSchema from "../models/user.model";
 
 const router: express.Router = express.Router();
-const jsonwebtoken_secret = process.env.jsonwebtoken_secret || "test";
+const jsonWebTokenSecret = process.env.jsonwebtoken_secret || "test";
 
 router.post("/sign-up", async (req, res) => {
     const { user_name, email, password } = req.body;
@@ -18,7 +18,7 @@ router.post("/sign-up", async (req, res) => {
         user.save()
             .then(userObject => {
                 // signing a token to save locally for future use
-                const token = jwt.sign({ user_id: userObject._id, user_name, email }, jsonwebtoken_secret);
+                const token = jwt.sign({ user_id: userObject._id, user_name, email }, jsonWebTokenSecret);
                 res.cookie("token", token, { httpOnly: true })
                 return res.send({ status: "ok", token })
             })
@@ -37,7 +37,7 @@ router.post("/sign-in", async(req, res) => {
     const user = await userSchema.findOne({email});
     if(!user) return res.send({status: "not found", error: "Account not found."})
     const result = await user.comparePassword(password);
-    const token = jwt.sign({ user_id: user._id, user_name: user.user_name, email: user.email }, jsonwebtoken_secret);
+    const token = jwt.sign({ user_id: user._id, user_name: user.user_name, email: user.email }, jsonWebTokenSecret);
 
     if(result) {
         res.cookie("token", token, { httpOnly: true })
@@ -54,7 +54,7 @@ router.get("/verify", async(req, res) => {
 
 
     try {
-        const userData = jwt.verify(token, jsonwebtoken_secret) as JwtPayload;
+        const userData = jwt.verify(token, jsonWebTokenSecret) as JwtPayload;
         const user = await userSchema.findById(userData.user_id)
         userData.isAdmin = user.isAdmin
         res.send({ status: "ok", data: userData});

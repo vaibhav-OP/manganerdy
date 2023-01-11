@@ -5,8 +5,8 @@ import chpatersSchema from "../models/comic_chapters.model";
 const router: express.Router = express.Router();
 
 router.get("/most_viewed", async(req, res) => {
-    const limit = 10,
-        page = 0;
+    const limit = 10;
+    const page = 0;
 
     try {
         const data = await comicSchema.find()
@@ -36,7 +36,7 @@ router.post("/latest_updated", async(req, res) => {
                                 .exec();
 
         if(!comicData) return res.send({ status: "error" });
-        if(comicData.length == 0) return res.send({ status: "error", msg: "last array"})
+        if(comicData.length === 0) return res.send({ status: "error", msg: "last array"})
         res.send({ status: "ok", data: comicData});
     } catch (error) {
         console.log(error)
@@ -118,12 +118,12 @@ router.get("/search", async(
         req: express.Request,
         res: express.Response
     ) => {
-    let { title } = req.query as unknown as Query;
+    const { title } = req.query as unknown as Query;
 
     if(!title) return res.send({ status: "error"});
 
     try {
-        let comics = await comicSchema.find({ $text: { $search: title } })
+        const comics = await comicSchema.find({ $text: { $search: title } })
                                         .select("title profilePhotoLocation authorName")
                                         .exec();
 
