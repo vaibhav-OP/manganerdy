@@ -59,8 +59,7 @@ Router.post("/comic", async(req, res) => {
             res.send({ status: "ok", data: comic._id})
         })
     })
-    .catch((err:any) => {
-        console.log(err)
+    .catch(() => {
         return res.send({ status: "error", error: "invalid coverPicture"  })
     })
 })
