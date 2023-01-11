@@ -34,21 +34,21 @@ export default function AddChapter() {
                     placeholder="comic id"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
                 <input
                     type="text"
                     name="name"
                     placeholder="chapter name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
                 <input
                     type="text"
                     name="url"
                     placeholder="chapter url"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
                 <input
                     type="submit"
                     className="bg-themeColor py-2 px-3 text-white mt-6"/>

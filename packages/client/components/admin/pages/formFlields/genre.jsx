@@ -29,7 +29,7 @@ export default function GenreField({ genre, setGenre }) {
     }
 
     return (
-        <div className="inline-flex flex-col gap-2 bg-slate-200 shadow-2xl py-2 px-3">
+        <div className="inline-flex flex-col gap-2 bg-slate-200 shadow-2xl py-2 px-3 dark:bg-[#15202B]">
             <div className="gap-1 flex flex-row flex-wrap">
                 { genre?.map((tag, index) => (
                     <GenreSpan tag={tag} handleRemove={handleRemove} key={index}/>
@@ -39,7 +39,7 @@ export default function GenreField({ genre, setGenre }) {
                 type="text"
                 name="genre"
                 placeholder="enter the genre"
-                className="w-full bg-transparent border-none outline-none"
+                className="w-full bg-transparent border-none outline-none dark:bg-[#15202B]"
                 value={newValue}
                 onChange={(e) => setNewValue(e.target.value)}
                 onKeyDown={handleKeyDown}/>

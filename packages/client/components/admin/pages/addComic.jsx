@@ -1,23 +1,24 @@
 "use client"
 import { useRef, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { Editor } from '@tinymce/tinymce-react';
 
 import GenreField from "./formFlields/genre";
 
 export default function AddComic({ notify}) {
     const router = useRouter();
 
-    const formRef = useRef(null)
+    const formRef = useRef(null);
+    const editorRef = useRef(null);
 
     const [ title, setTitle ] = useState("");
     const [ genre, setGenre ] = useState([]);
     const [ autherName, setAutherName ] = useState("");
-    const [ description, setDescription ] = useState("");
     const [ coverPageURL, setCoverPageURL ] = useState("");
     const [ isDisabled, setDisabled] = useState(false);
 
     function handleClick(e) {
-        if(title == "" || autherName == "" || description == "" || coverPageURL == "") return;
+        if(title == "" || autherName == "" || editorRef.current.getContent() == "" || coverPageURL == "") return;
         if (isDisabled) {
             return;
         }
@@ -34,7 +35,7 @@ export default function AddComic({ notify}) {
             body: JSON.stringify({
                 title,
                 autherName,
-                description,
+                description: editorRef.current.getContent(),
                 coverPageURL,
                 genre
             }),
@@ -68,22 +69,30 @@ export default function AddComic({ notify}) {
                     placeholder="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value.trim())}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
                     required/>
-                <textarea
-                    name="description"
-                    placeholder="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value.trim())}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 h-28 border-none outline-none"
-                    required/>
+                <Editor
+                    onInit={(evt, editor) => editorRef.current = editor}
+                    init={{
+                        height: 200,
+                        menubar: false,
+                        plugins: [
+                        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+                        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+                        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+                        ],
+                        toolbar: 'undo redo | casechange blocks | bold italic | ' +
+                        'alignleft aligncenter alignright alignjustify | ',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                    }}
+                />
                 <input
                     type="text"
                     name="cover_image"
                     placeholder="cover image url"
                     value={coverPageURL}
                     onChange={(e) => setCoverPageURL(e.target.value.trim())}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
                     required/>
                 <input
                     type="text"
@@ -91,7 +100,7 @@ export default function AddComic({ notify}) {
                     placeholder="author name"
                     value={autherName}
                     onChange={(e) => setAutherName(e.target.value.trim())}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none"
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
                     required/>
                 <div className="flex flex-col w-full">
                     <h6 className="text-xl">Genre</h6>

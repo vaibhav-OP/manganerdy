@@ -1,6 +1,5 @@
-import fs from "fs";
+import path from "path"
 import express from "express";
-import request from "request";
 import { v4 as uuidv4 } from 'uuid';
 import imageDownloader from "image-downloader";
 
@@ -43,7 +42,7 @@ Router.post("/comic", async(req, res) => {
 
     imageDownloader.image({
         url: coverPageURL,
-        dest: `${__dirname}/../public/coverPicture/${filename}`
+        dest: path.join(__dirname, `../public/coverPicture/${filename}`)
     })
     .then(() => {
         const comic = new comicModel({
@@ -55,7 +54,9 @@ Router.post("/comic", async(req, res) => {
         });
 
         comic.save((err, doc) => {
-            if (err) return console.error(err);
+            if (err) {
+                return res.send({ status: "error", error: err })
+            }
             res.send({ status: "ok", data: comic._id})
         })
     })
