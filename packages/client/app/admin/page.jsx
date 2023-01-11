@@ -18,7 +18,7 @@ export default function() {
     return (
         <div className="flex">
             <SidePanel page={page} setPage={setPage}/>
-            <MainScreen page={page} />
+            <MainScreen page={page} notify={notify}/>
         </div>
     )
 }

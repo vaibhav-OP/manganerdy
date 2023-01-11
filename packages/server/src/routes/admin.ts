@@ -2,19 +2,11 @@ import fs from "fs";
 import express from "express";
 import request from "request";
 import { v4 as uuidv4 } from 'uuid';
+import imageDownloader from "image-downloader";
 
 import comicModel from "../models/comic.model";
 
-const Router: express.Router = express.Router()
-
-const download = (uri: string, filename: string): Promise<string> => {
-    return new Promise((resolve, reject) => {
-        request.head(uri, (err, res, body) => {
-            if(err)return reject("error");
-            request(uri).pipe(fs.createWriteStream(filename)).on("close", () => {resolve("done")});
-        });
-    })
-};
+const Router: express.Router = express.Router();
 
 const admins = [
     {
@@ -47,28 +39,30 @@ Router.post("/comic", async(req, res) => {
 
     const imageID = uuidv4();
     const extension = coverPageURL.split('.').pop();
+    const filename = imageID + "." + extension;
 
-    const filename = imageID + "." + extension
-    console.log(filename)
-    download(coverPageURL, `./src/public/coverPicture/${filename}`)
-        .then(response => {
-            const comic = new comicModel({
-                title,
-                description,
-                profilePhotoLocation: "http://localhost:3001/coverPicture/" + filename,
-                authorName: autherName,
-                genre
-            });
+    imageDownloader.image({
+        url: coverPageURL,
+        dest: `${__dirname}/../public/coverPicture/${filename}`
+    })
+    .then(response => {
+        const comic = new comicModel({
+            title,
+            description,
+            profilePhotoLocation: process.env.serverURL + "/coverPicture/" + filename,
+            authorName: autherName,
+            genre
+        });
 
-            comic.save((err, doc) => {
-                if (err) return console.error(err);
-                console.log(comic.title + "was added to the database sucessfully.");
-                res.send({ status: "ok", data: comic._id})
-            })
+        comic.save((err, doc) => {
+            if (err) return console.error(err);
+            res.send({ status: "ok", data: comic._id})
         })
-        .catch(err => {
-            return res.send({ status: "error", error: "invalid coverPicture"  })
-        })
+    })
+    .catch(err => {
+        console.log(err)
+        return res.send({ status: "error", error: "invalid coverPicture"  })
+    })
 })
 
 export default Router;
