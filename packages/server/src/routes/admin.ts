@@ -45,7 +45,7 @@ Router.post("/comic", async(req, res) => {
         url: coverPageURL,
         dest: `${__dirname}/../public/coverPicture/${filename}`
     })
-    .then(response => {
+    .then(() => {
         const comic = new comicModel({
             title,
             description,
@@ -59,7 +59,7 @@ Router.post("/comic", async(req, res) => {
             res.send({ status: "ok", data: comic._id})
         })
     })
-    .catch(err => {
+    .catch((err:any) => {
         console.log(err)
         return res.send({ status: "error", error: "invalid coverPicture"  })
     })
