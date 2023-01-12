@@ -60,18 +60,10 @@ export default async function({ params }) {
 }
 
 async function getComicData(id) {
-    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: id
-        })
-    })
-    .then(res => res.json())
-    .catch(error => {})
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic/${id}`, { cache: 'no-store' })
+        .then(res => res.json())
+        .catch(error => {})
 
-    if(response.status == "error") notFound()
+    if(!response || response.status !== "ok") notFound();
     return response.data;
 }

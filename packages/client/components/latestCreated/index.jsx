@@ -1,5 +1,4 @@
 "use client"
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,56 +8,88 @@ export default function LatestCreated({ latestComics }) {
     const wrapper = useRef();
     const ulElement = useRef();
     const [currentSlide, setcurrentSlide] = useState(0);
+    const [touchPosition, setTouchPosition] = useState(null)
+
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX
+        setTouchPosition(touchDown)
+    }
+
+    const handleTouchMove = (e) => {
+        const touchDown = touchPosition
+
+        if(touchDown === null) {
+            return
+        }
+
+        const currentTouch = e.touches[0].clientX
+        const diff = touchDown - currentTouch
+
+        // to move the slider to the left which is to the preveous slide
+        if (diff > 5) {
+            if(!ulElement.current) return;
+
+            if(currentSlide == 0){
+                setcurrentSlide(ulElement.current.childElementCount-1);
+            } else {
+                setcurrentSlide(currentSlide => currentSlide - 1);
+            }
+        }
+
+        // to move the slider to the right which is to the next slide
+        if (diff < -5) {
+            if(!ulElement.current) return;
+
+            if(ulElement.current.childElementCount-1 == currentSlide){
+                setcurrentSlide(0);
+            } else {
+                setcurrentSlide(currentSlide => currentSlide + 1);
+            }
+        }
+
+        setTouchPosition(null)
+    }
 
     useEffect(() => {
         const width = wrapper.current.clientWidth;
         ulElement.current.style.transform = `translateX(${-currentSlide * width}px)`;
     }, [currentSlide])
-
     return (
-        <div className="my-0 mx-auto w-full lg:w-11/12 sm:h-[600px] h-[290px] relative select-none lg:px-0 px-2 overflow-hidden" ref={wrapper}>
-            <div className="relative m-0 p-0 h-full list-none z-0 transition-all duration-300 grid grid-flow-col auto-cols-full" ref={ulElement}>
-            {(latestComics.length !== 0) ? (
-                latestComics?.map((comic, index) => {
-                    return <ComicSlide comicData={comic} key={index}/>
-                })
-            ) : (
-                <div className="flex justify-center items-center flex-col">
-                    <h1 className="font-bold text-2xl">oops!! No Comic Found</h1>
-                    <span>Please try reloading the web.</span>
-                </div>
-            )
-            }
+        <div className="h-80 w-full lg:w-11/12 mx-auto lg:px-0 px-2 overflow-hidden py-5 relative select-none" ref={wrapper}>
+            <div className="h-full flex relative transition-all duration-300"
+                ref={ulElement}
+                onTouchMove={handleTouchMove}
+                onTouchStart={handleTouchStart}>
+            {latestComics?.map((comic, index) => {
+                return (<div key={index}
+                    className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
+                    style={{ backgroundImage: `url("${comic.profilePhotoLocation}")`}}>
+                        <div className="h-full backdrop-blur-xl bg-black/60 px-5 py-6 flex gap-4 items-center">
+                            <div className="h-60 min-w-[180px] w-auto relative">
+                                <Image
+                                    src={comic.profilePhotoLocation}
+                                    width="180"
+                                    height="250"
+                                    sizes="100vw"
+                                    alt={comic.title}
+                                    className="max-h-full rounded-md"/>
+                            </div>
+                            <div className="h-full flex flex-col justify-between">
+                                <div className="flex flex-col gap-2">
+                                    <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
+                                    <div className="line-clamp-5">
+                                        <span className="hidden md:block font-normal text-base" dangerouslySetInnerHTML={{__html: comic.description}}/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg italic">{comic.authorName}</h3>
+                                </div>
+                            </div>
+                        </div>
+                </div>)
+            })}
             </div>
             {(latestComics.length !== 0) && <SlideChangerButtons currentSlide={currentSlide} setcurrentSlide={setcurrentSlide} ulElement={ulElement}/>}
-        </div>
-    )
-}
-
-function ComicSlide({ comicData }) {
-    return (
-        <div key={comicData._id}
-            className="w-full h-full bg-cover bg-no-repeat bg-center"
-            style={{ backgroundImage: `url("${comicData.profilePhotoLocation}")`}}>
-                <div className="relative float-left m-0 w-full h-full text-center bg-cover bg-no-repeat grid grid-cols-custom0 grid-rows-[395px] bg-black/75 backdrop-blur-md content-center">
-                    <div className="w-auto h-full float-left flex">
-                        <div className="w-full h-44 sm:h-full float-right relative m-auto">
-                            <Link href={`/comic/${comicData._id}`}>
-                                <Image
-                                    fill
-                                    alt={comicData.title}
-                                    className="object-contain"
-                                    src={comicData.profilePhotoLocation}/>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="text-white/80 flex-col justify-center row-start-1 max-w-lg m-auto text-start">
-                        <Link href={`/comic/${comicData._id}`}>
-                            <h1 className="font-bold sm:text-4xl text-2xl text-white mb-2">{comicData.title}</h1>
-                        </Link>
-                        <div className="line-clamp-5 overflow-auto"><span dangerouslySetInnerHTML={{__html: comicData.description}}/></div>
-                    </div>
-                </div>
         </div>
     )
 }

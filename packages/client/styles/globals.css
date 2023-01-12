@@ -13,6 +13,13 @@ body {
   width: 0;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
 
 body.dark #themeToggleBtn {
   background-image: url("https://img.icons8.com/dusk/64/000000/summer.png");

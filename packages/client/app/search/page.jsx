@@ -1,32 +1,13 @@
-import { notFound } from 'next/navigation';
-
 import { TbMoodCry } from "react-icons/tb";
 import ComicContainer from "../../components/libs/comicContainer";
 
-async function getSearchResults(title) {
-    const response = await fetch("http://localhost:3001/comics/search?title="+title, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        next: { revalidate: 1 }
-    })
-    .then(res => res.json())
-    .catch((error) => {
-      console.log(error)
-    });
-
-    if(!response) return []
-    return response.data
-}
-
+/*
+    have work on the design of NOT_RESULT_FOUND !important
+*/
 export default async function({ searchParams }) {
-    if(!searchParams.title || searchParams.title == "") {
-        notFound()
-    };
     const comics = await getSearchResults(searchParams.title)
 
-    if(comics.length === 0 || !searchParams.title) return (
+    if(comics?.length === 0 || !searchParams.title) return (
         <div className="w-full select-none mx-auto flex flex-col justify-center items-center min-h-[calc(100vh-250px)] gap-2">
             <div className="text-9xl"><TbMoodCry /></div>
             <div className="text-center">
@@ -47,3 +28,11 @@ export default async function({ searchParams }) {
     )
 }
 
+async function getSearchResults(title) {
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/search?title=${title}`, { cache: 'no-store' })
+        .then(res => res.json())
+        .catch((error) => {});
+
+    if(!response) return []
+    return response.data
+}

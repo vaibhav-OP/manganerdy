@@ -5,7 +5,7 @@ export default function SliderChangeButton({ currentSlide, setcurrentSlide, ulEl
         if(!ulElement.current) return;
 
         if(currentSlide == 0){
-            setcurrentSlide(5);
+            setcurrentSlide(ulElement.current.childElementCount-1);
         } else {
             setcurrentSlide(currentSlide => currentSlide - 1);
         }
@@ -21,9 +21,9 @@ export default function SliderChangeButton({ currentSlide, setcurrentSlide, ulEl
         }
     }
     return(
-        <div className="text-black text-2xl bottom-0 left-0 p-5 gap-3 absolute hidden sm:flex">
-            <div className="w-11 h-11 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveLeft}><MdOutlineKeyboardArrowLeft /></div>
-            <div className="w-11 h-11 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveRight}><MdOutlineKeyboardArrowRight /></div>
+        <div className="text-black sm:text-2xl text-lg bottom-5 right-0 p-5 gap-3 absolute sm:flex hidden">
+            <div className="sm:w-11 sm:h-11 w-9 h-9 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveLeft}><MdOutlineKeyboardArrowLeft /></div>
+            <div className="sm:w-11 sm:h-11 w-9 h-9 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveRight}><MdOutlineKeyboardArrowRight /></div>
         </div>
     )
 }

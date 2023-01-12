@@ -1,5 +1,5 @@
 "use client"
-export default function () {
+export default function ErrorPage() {
     return (
         <div className="flex justify-center items-center flex-col">
             <h1 className="font-bold text-2xl">oops!! something went wrong ;-;</h1>
