@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -66,19 +67,23 @@ export default function LatestCreated({ latestComics }) {
                     style={{ backgroundImage: `url("${comic.profilePhotoLocation}")`}}>
                         <div className="h-full backdrop-blur-xl bg-black/60 px-5 py-6 flex gap-4 items-center">
                             <div className="h-60 min-w-[180px] w-auto relative">
-                                <Image
-                                    src={comic.profilePhotoLocation}
-                                    width="180"
-                                    height="250"
-                                    sizes="100vw"
-                                    alt={comic.title}
-                                    className="max-h-full rounded-md"/>
+                                <Link href={`/comic/${comic._id}`}>
+                                    <Image
+                                        src={comic.profilePhotoLocation}
+                                        width="180"
+                                        height="250"
+                                        sizes="100vw"
+                                        alt={comic.title}
+                                        className="max-h-full rounded-md"/>
+                                </Link>
                             </div>
                             <div className="h-full flex flex-col justify-between">
                                 <div className="flex flex-col gap-2">
-                                    <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
+                                    <Link href={`/comic/${comic._id}`}>
+                                        <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
+                                    </Link>
                                     <div className="line-clamp-5">
-                                        <span className="hidden md:block font-normal text-base" dangerouslySetInnerHTML={{__html: comic.description}}/>
+                                        <span className="hidden md:block font-normal text-base text-white/90" dangerouslySetInnerHTML={{__html: comic.description}}/>
                                     </div>
                                 </div>
                                 <div>
