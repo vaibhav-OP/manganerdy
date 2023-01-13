@@ -27,7 +27,7 @@ export default function LatestCreated({ latestComics }) {
         const diff = touchDown - currentTouch
 
         // to move the slider to the left which is to the preveous slide
-        if (diff > 5) {
+        if (diff < -5) {
             if(!ulElement.current) return;
 
             if(currentSlide == 0){
@@ -38,7 +38,7 @@ export default function LatestCreated({ latestComics }) {
         }
 
         // to move the slider to the right which is to the next slide
-        if (diff < -5) {
+        if (diff > 5) {
             if(!ulElement.current) return;
 
             if(ulElement.current.childElementCount-1 == currentSlide){
