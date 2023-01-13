@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 const getImageUrl = (url: string) => {
     return fetch(url)
         .then(async response => {

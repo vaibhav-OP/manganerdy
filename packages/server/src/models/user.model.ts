@@ -60,7 +60,6 @@ userSchema.methods.comparePassword = async function(password: string):Promise<bo
     try {
         return await bcrypt.compare(password, this.password);
     } catch(error) {
-        console.log("Error while comparing", error);
         return false;
     }
 }
