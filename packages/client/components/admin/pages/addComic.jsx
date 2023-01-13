@@ -5,7 +5,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 import GenreField from "./formFlields/genre";
 
-export default function AddComic({ notify}) {
+export default function AddComic({ notify }) {
     const router = useRouter();
 
     const formRef = useRef(null);

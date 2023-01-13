@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export default async function ({ searchParams }) {
+export default async function ({searchParams }) {
     const data = await getChapterData(searchParams.id, searchParams.name)
 
-    const images = data.url.map((url) => {
-        console.log(url)
+    const images = data?.url.map((url) => {
         return (
             <img src={url}/>
         )
@@ -21,11 +20,13 @@ export default async function ({ searchParams }) {
     )
 }
 
-async function getChapterData(id, name){
+async function getChapterData( id, name){
     const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/chapter?id=${id}&name=${name}`, { cache: 'no-store' })
         .then(res => res.json())
-        .catch(error => {})
+        .catch(error => {
+            console.log(error)
+        })
 
-    if(!response) notFound()
+    if(!response) return
     return response
 }

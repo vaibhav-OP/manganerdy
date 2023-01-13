@@ -10,7 +10,7 @@ export default async function({ params }) {
 
     const chapters = comicData?.chapters?.chapters?.map((chapter) => {
         return (
-            <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${chapter._id}`}>
+            <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${comicData.chapters._id}`}>
                 <li id={`${chapter.name.toLowerCase()}`}
                     className='font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
                     <div className='gap-2 flex items-center'>

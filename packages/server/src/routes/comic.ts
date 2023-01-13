@@ -125,12 +125,11 @@ router.get("/search", async(
 router.get("/chapter", async(req, res) => {
     const { id, name } = req.query;
 
-    const chapterObjRaw = await chaptersSchema.findOne({
-            "chapters.id": id
-        }).exec()
+    const chapterObjRaw = await chaptersSchema.findById(id).exec()
     if(!chapterObjRaw) return res.status(404).send()
 
     const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
+
     if(!chapterFinal) return res.status(404).send()
     chapterFinal.url = chapterFinal.url.sort();
 

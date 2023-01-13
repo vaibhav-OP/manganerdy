@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useState } from "react";
 
-export default function AddChapter() {
+export default function AddChapter({ notify }) {
     const [id, setId] = useState("");
     const [url, setUrl] = useState("");
     const [name, setName] = useState("");
+    const [ isDisabled, setDisabled] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault()
-
+        setDisabled(state => !state);
         const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/chapter", {
             method: "POST",
             headers: {
@@ -19,9 +20,15 @@ export default function AddChapter() {
                 chapter_url: url
             })
         })
-        .then(res => res.json())
-
-        console.log(response)
+        .then(res => {
+            setDisabled(state => !state)
+            notify("success", "chapter added successfully.")
+        })
+        .catch(error => {
+            console.log(error)
+            setDisabled(state => !state)
+            notify("error", "something went wrong.")
+        })
     }
     return (
         <>
@@ -34,24 +41,29 @@ export default function AddChapter() {
                     placeholder="comic id"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
+                    required/>
                 <input
                     type="text"
                     name="name"
                     placeholder="chapter name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
+                    required/>
                 <input
                     type="text"
                     name="url"
                     placeholder="chapter url"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"/>
+                    className="bg-slate-200 shadow-2xl py-2 px-3 border-none outline-none dark:bg-[#15202B]"
+                    required/>
                 <input
                     type="submit"
-                    className="bg-themeColor py-2 px-3 text-white mt-6"/>
+                    className="bg-themeColor py-2 px-3 text-white mt-6"
+                    value={isDisabled ? 'Sending...' : 'Send'}
+                    disabled={isDisabled}/>
             </form>
         </>
     )
