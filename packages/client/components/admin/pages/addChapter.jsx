@@ -8,7 +8,7 @@ export default function AddChapter() {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        const response = await fetch(NEXT_PUBLIC_serverURL + "/admin/add-comic", {
+        const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/chapter", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

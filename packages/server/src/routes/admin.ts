@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import imageDownloader from "image-downloader";
 
 import comicModel from "../models/comic.model";
+import chapterModel from "../models/comic_chapters.model";
 
 const Router: express.Router = express.Router();
 
@@ -44,12 +45,22 @@ Router.post("/comic", async(req, res) => {
         url: coverPageURL,
         dest: path.join(__dirname, `../public/coverPicture/${filename}`)
     })
-    .then(() => {
+    .then(async () => {
+        let chapter = new chapterModel()
+
+        chapter.save((err, doc) => {
+            if (err) {
+                return res.send({ status: "error", error: err })
+            }
+            res.send({ status: "ok", data: comic._id})
+        })
+
         const comic = new comicModel({
             title,
             description,
             profilePhotoLocation: process.env.serverURL + "/coverPicture/" + filename,
             authorName: autherName,
+            chapters: chapter._id,
             genre
         });
 

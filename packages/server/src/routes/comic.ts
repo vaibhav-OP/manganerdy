@@ -1,6 +1,11 @@
+import path from "path";
 import express from "express";
+import { v4 as uuidv4 } from 'uuid';
+import imageDownloader from "image-downloader";
 import comicSchema from "../models/comic.model";
-import chpatersSchema from "../models/comic_chapters.model";
+import chaptersSchema from "../models/comic_chapters.model";
+
+import getImageUrls from "../libs/getImageUrls";
 
 const router: express.Router = express.Router();
 
@@ -79,11 +84,11 @@ router.get("/latest_created", async(req, res) => {
 
 router.get("/comic/:id", async(req, res) => {
     const { id } = req.params;
-    const chapter = new chpatersSchema()
+    const chapter = new chaptersSchema()
     try {
         const comicData = await comicSchema.findById(id)
                                     .select('-view')
-                                    .populate("chapters", "chapters.name")
+                                    .populate("chapters", "chapters._id chapters.name")
                                     .exec();
 
         if(!comicData) return res.send({ status: "error" });
@@ -114,6 +119,95 @@ router.get("/search", async(
     }
 })
 
+/*
+    Get chapter
+*/
+router.get("/chapter", async(req, res) => {
+    const { id, name } = req.query;
+
+    const ChapterObj = await chaptersSchema.findOne({
+            "chapters.id": id
+        }).exec()
+    if(!ChapterObj) return res.status(404).send()
+
+    let chapter = ChapterObj.chapters.find(chapter => chapter.name == name);
+    if(!chapter) return res.status(404).send()
+    chapter.url = chapter.url.sort();
+
+    res.send(chapter)
+})
+
+/*
+    add chapter POST
+*/
+router.post("/chapter", async(req, res) => {
+    const {
+        id,
+        chapter_name,
+        chapter_url
+    } = req.body;
+
+    const comic = await comicSchema.findById(id)
+        .select("chapters")
+    if(!comic) return res.status(404).send();
+
+    const chapter = await chaptersSchema.findByIdAndUpdate(comic.chapters._id)
+
+    const data = await getImageUrls(chapter_url);
+
+    let chapterObj:ChapterObj = {
+        name: chapter_name,
+        url: []
+    }
+
+    await Promise.all(data.map(async(url, index) => {
+        const extension = url.split('.').pop();
+        const filename = uuidv4() + "." + extension;
+        const chapterNum = url.split(".")[0]
+
+        if(!extension || extension == "Index") return;
+
+        await imageDownloader.image({
+            url: chapter_url + url,
+            dest: path.join(__dirname, `../public/images/${chapterNum}_${filename}`),
+        })
+        .then(() => {
+            chapterObj.url.push(process.env.serverURL + "/images/" + `${chapterNum}_${filename}`)
+        })
+        .catch(err => {})
+    })).then(() => {
+        chapter.chapters.push(chapterObj)
+        chapter.save()
+    })
+
+    res.send({ status: "ok" })
+})
+
+function downloadImageFromData(data: Array<string>, chapter_name: string, chapter_url: string) {
+    return new Promise(async(resolve, reject) => {
+        let chapterObj = {
+            name: chapter_name as string,
+            url: [] as Array<String>
+        }
+        await Promise.all(data.map(async(url, index) => {
+            const extension = url.split('.').pop();
+            const filename = uuidv4() + "." + extension;
+
+            if(!extension || extension == "Index") return;
+
+            await imageDownloader.image({
+                url: chapter_url + url,
+                dest: path.join(__dirname, `../public/chapters/${filename}`),
+            })
+            .then(() => {
+                chapterObj.url.push(process.env.serverURL + "/chapters/" + filename)
+            })
+            .catch(err => {})
+        }))
+        resolve(chapterObj)
+    })
+}
+
 interface SearchQuery {
     title: string,
     genre: string
@@ -127,6 +221,16 @@ interface LatestUpdatedQuery {
 interface MostViewedQuery {
     limit: number,
     page: number
+}
+
+interface chapterQuery {
+    id: string,
+    chapter_name: string
+}
+
+interface ChapterObj {
+    name: string,
+    url: any
 }
 
 export default router;
