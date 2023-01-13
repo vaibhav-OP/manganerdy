@@ -22,6 +22,8 @@ export default function AddChapter({ notify }) {
         })
         .then(res => {
             setDisabled(state => !state)
+            setUrl("")
+            setName("")
             notify("success", "chapter added successfully.")
         })
         .catch(error => {
@@ -61,7 +63,7 @@ export default function AddChapter({ notify }) {
                     required/>
                 <input
                     type="submit"
-                    className="bg-themeColor py-2 px-3 text-white mt-6"
+                    className="bg-themeColor py-2 px-3 text-white mt-6 disabled:bg-slate-700 hover:disabled:cursor-not-allowed"
                     value={isDisabled ? 'Sending...' : 'Send'}
                     disabled={isDisabled}/>
             </form>
