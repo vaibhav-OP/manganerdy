@@ -131,7 +131,7 @@ router.get("/chapter", async(req, res) => {
     const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
 
     if(!chapterFinal) return res.status(404).send()
-    chapterFinal.url = chapterFinal.url.sort();
+    chapterFinal.url = chapterFinal.url.sort((a:any,b:any) => {return a-b});
 
     res.send(chapterFinal)
 })
