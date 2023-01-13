@@ -22,6 +22,9 @@ const getImageUrl = (url: string) => {
             chapterArray = chapterArray.sort((a:any, b:any) => {return a.split(".")[0]-b.split(".")[0]})
 
             return chapterArray;
+        })
+        .catch((error) => {
+            console.log(error)
         });
 }
 

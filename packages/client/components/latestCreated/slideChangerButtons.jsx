@@ -21,7 +21,7 @@ export default function SliderChangeButton({ currentSlide, setcurrentSlide, ulEl
         }
     }
     return(
-        <div className="text-black sm:text-2xl text-lg bottom-5 right-0 p-5 gap-3 absolute sm:flex hidden">
+        <div className="text-black sm:text-2xl text-lg bottom-0 right-0 p-5 gap-3 absolute sm:flex hidden">
             <div className="sm:w-11 sm:h-11 w-9 h-9 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveLeft}><MdOutlineKeyboardArrowLeft /></div>
             <div className="sm:w-11 sm:h-11 w-9 h-9 bg-white rounded-full flex justify-center items-center hover:bg-themeLinearGradient hover:dark:bg-darkthemeLinearGradient hover:text-white hover:cursor-pointer" onClick={moveRight}><MdOutlineKeyboardArrowRight /></div>
         </div>

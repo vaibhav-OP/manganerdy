@@ -56,7 +56,7 @@ export default function LatestCreated({ latestComics }) {
         ulElement.current.style.transform = `translateX(${-currentSlide * width}px)`;
     }, [currentSlide])
     return (
-        <div className="h-80 w-full lg:w-11/12 mx-auto lg:px-0 px-2 overflow-hidden py-5 relative select-none" ref={wrapper}>
+        <div className="h-80 w-full lg:w-11/12 mx-auto lg:px-0 px-2 overflow-hidden relative select-none" ref={wrapper}>
             <div className="h-full flex relative transition-all duration-300"
                 ref={ulElement}
                 onTouchMove={handleTouchMove}
@@ -77,7 +77,7 @@ export default function LatestCreated({ latestComics }) {
                                         className="max-h-full rounded-md"/>
                                 </Link>
                             </div>
-                            <div className="h-full flex flex-col justify-between">
+                            <div className="h-full flex flex-col justify-between py-5">
                                 <div className="flex flex-col gap-2">
                                     <Link href={`/comic/${comic._id}`}>
                                         <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
