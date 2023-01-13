@@ -1,4 +1,4 @@
-export default function(url: string){
+const getImageUrl = (url: string) => {
     return fetch(url)
         .then(async response => {
             if (!response.ok) {
@@ -9,7 +9,7 @@ export default function(url: string){
 
             html = html.replace(/<[^>]*>?/gm, '');
 
-            let chapterArray:Array<string> = html.split("\n");
+            let chapterArray:string[] = html.split("\n");
 
             // get all links
             chapterArray.map((line, index) => {
@@ -17,8 +17,10 @@ export default function(url: string){
             });
 
             // sort string with there number
-            chapterArray = chapterArray.sort(function(a:any, b:any){return a.split(".")[0]-b.split(".")[0]})
+            chapterArray = chapterArray.sort((a:any, b:any) => {return a.split(".")[0]-b.split(".")[0]})
 
             return chapterArray;
         });
 }
+
+export default getImageUrl;

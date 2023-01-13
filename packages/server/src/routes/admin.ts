@@ -46,7 +46,7 @@ Router.post("/comic", async(req, res) => {
         dest: path.join(__dirname, `../public/coverPicture/${filename}`)
     })
     .then(async () => {
-        let chapter = new chapterModel()
+        const chapter = new chapterModel()
 
         chapter.save((err, doc) => {
             if (err) {

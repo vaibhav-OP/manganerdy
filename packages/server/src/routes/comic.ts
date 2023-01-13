@@ -125,16 +125,16 @@ router.get("/search", async(
 router.get("/chapter", async(req, res) => {
     const { id, name } = req.query;
 
-    const ChapterObj = await chaptersSchema.findOne({
+    const chapterObjRaw = await chaptersSchema.findOne({
             "chapters.id": id
         }).exec()
-    if(!ChapterObj) return res.status(404).send()
+    if(!chapterObjRaw) return res.status(404).send()
 
-    let chapter = ChapterObj.chapters.find(chapter => chapter.name == name);
-    if(!chapter) return res.status(404).send()
-    chapter.url = chapter.url.sort();
+    const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
+    if(!chapterFinal) return res.status(404).send()
+    chapterFinal.url = chapterFinal.url.sort();
 
-    res.send(chapter)
+    res.send(chapterFinal)
 })
 
 /*
@@ -155,7 +155,7 @@ router.post("/chapter", async(req, res) => {
 
     const data = await getImageUrls(chapter_url);
 
-    let chapterObj:ChapterObj = {
+    const chapterObj:ChapterObj = {
         name: chapter_name,
         url: []
     }
@@ -165,7 +165,7 @@ router.post("/chapter", async(req, res) => {
         const filename = uuidv4() + "." + extension;
         const chapterNum = url.split(".")[0]
 
-        if(!extension || extension == "Index") return;
+        if(!extension || extension === "Index") return;
 
         await imageDownloader.image({
             url: chapter_url + url,
@@ -174,7 +174,7 @@ router.post("/chapter", async(req, res) => {
         .then(() => {
             chapterObj.url.push(process.env.serverURL + "/images/" + `${chapterNum}_${filename}`)
         })
-        .catch(err => {})
+        .catch(err => { res.status(500).send() })
     })).then(() => {
         chapter.chapters.push(chapterObj)
         chapter.save()
@@ -182,31 +182,6 @@ router.post("/chapter", async(req, res) => {
 
     res.send({ status: "ok" })
 })
-
-function downloadImageFromData(data: Array<string>, chapter_name: string, chapter_url: string) {
-    return new Promise(async(resolve, reject) => {
-        let chapterObj = {
-            name: chapter_name as string,
-            url: [] as Array<String>
-        }
-        await Promise.all(data.map(async(url, index) => {
-            const extension = url.split('.').pop();
-            const filename = uuidv4() + "." + extension;
-
-            if(!extension || extension == "Index") return;
-
-            await imageDownloader.image({
-                url: chapter_url + url,
-                dest: path.join(__dirname, `../public/chapters/${filename}`),
-            })
-            .then(() => {
-                chapterObj.url.push(process.env.serverURL + "/chapters/" + filename)
-            })
-            .catch(err => {})
-        }))
-        resolve(chapterObj)
-    })
-}
 
 interface SearchQuery {
     title: string,
@@ -221,11 +196,6 @@ interface LatestUpdatedQuery {
 interface MostViewedQuery {
     limit: number,
     page: number
-}
-
-interface chapterQuery {
-    id: string,
-    chapter_name: string
 }
 
 interface ChapterObj {
