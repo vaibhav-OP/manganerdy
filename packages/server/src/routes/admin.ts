@@ -52,7 +52,6 @@ Router.post("/comic", async(req, res) => {
             if (err) {
                 return res.send({ status: "error", error: err })
             }
-            res.send({ status: "ok", data: comic._id})
         })
 
         const comic = new comicModel({
