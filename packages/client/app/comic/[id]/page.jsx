@@ -30,7 +30,7 @@ export default async function({ params }) {
                 <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
                     <div className="h-64 w-auto relative">
                         <img
-                            src={`${comicData?.profilePhotoLocation}`}
+                            src={`${NEXT_PUBLIC_serverURL}${comicData?.profilePhotoLocation}`}
                             className="w-auto h-full rounded-lg"
                         />
                     </div>

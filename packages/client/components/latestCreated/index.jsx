@@ -69,7 +69,7 @@ export default function LatestCreated({ latestComics }) {
                             <div className="h-60 min-w-[180px] w-auto relative">
                                 <Link href={`/comic/${comic._id}`}>
                                     <Image
-                                        src={comic.profilePhotoLocation}
+                                        src={NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                                         width="180"
                                         height="250"
                                         sizes="100vw"

@@ -171,7 +171,7 @@ router.post("/chapter", async(req, res) => {
             dest: path.join(__dirname, `../public/images/${chapterNum}_${filename}`),
         })
         .then(() => {
-            chapterObj.url.push(process.env.serverURL + "/images/" + `${chapterNum}_${filename}`)
+            chapterObj.url.push("/images/" + `${chapterNum}_${filename}`)
         })
         .catch(err => { res.status(500).send() })
     })).then(() => {

@@ -57,7 +57,7 @@ Router.post("/comic", async(req, res) => {
         const comic = new comicModel({
             title,
             description,
-            profilePhotoLocation: process.env.serverURL + "/coverPicture/" + filename,
+            profilePhotoLocation: "/coverPicture/" + filename,
             authorName: autherName,
             chapters: chapter._id,
             genre
