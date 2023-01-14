@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 
 // all middleware
 app.use(cors({
-    origin: ["http://localhost:3000", "http://107.189.12.106:3000"],
+    origin: ["http://localhost:3000", "http://107.189.12.106:3000", "https://manganerdy.com"],
     preflightContinue: true,
     credentials: true,
 }));
