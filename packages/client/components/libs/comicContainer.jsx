@@ -17,7 +17,7 @@ export default function ComicContainer({ comic }) {
                 <Link href={`/comic/${comic._id}`}>
                     {!isLoaded &&<ImageSkeleton />}
                     <Image
-                        src={NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                        src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                         alt={comic.title}
                         fill
                         onLoad={() => setIsLoaded(true)}

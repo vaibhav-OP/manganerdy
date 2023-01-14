@@ -25,12 +25,12 @@ export default async function({ params }) {
     return (
         <div className='pb-6 dark:text-white'>
             <div
-                style={{ backgroundImage: `url(${comicData?.profilePhotoLocation})`}}
+                style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})`}}
                 className="relative bg-cover bg-center bg-no-repeat">
                 <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
                     <div className="h-64 w-auto relative">
                         <img
-                            src={`${NEXT_PUBLIC_serverURL}${comicData?.profilePhotoLocation}`}
+                            src={`${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}`}
                             className="w-auto h-full rounded-lg"
                         />
                     </div>

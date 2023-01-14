@@ -6,7 +6,7 @@ export default async function ({searchParams }) {
 
     const images = data?.url.map((url) => {
         return (
-            <img src={NEXT_PUBLIC_serverURL + url}/>
+            <img src={process.env.NEXT_PUBLIC_serverURL + url}/>
         )
     })
     return  (
