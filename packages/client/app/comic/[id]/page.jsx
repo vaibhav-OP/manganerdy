@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
@@ -29,8 +30,10 @@ export default async function({ params }) {
                 className="relative bg-cover bg-center bg-no-repeat">
                 <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
                     <div className="h-64 w-auto relative">
-                        <img
-                            src={`${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}`}
+                        <Image
+                            height="256"
+                            width="179"
+                            src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
                             className="w-auto h-full rounded-lg"
                         />
                     </div>

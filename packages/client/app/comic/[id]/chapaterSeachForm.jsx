@@ -7,9 +7,15 @@ export default function() {
 
     function handleSearch(e) {
         e.preventDefault();
-        const value = searchValue.trim()
-        if(value.includes("chapter")) return location.href = `#${value}`;
-        location.href = `#chapter%20${value}`;
+
+        // removes any extra spaces at starting and ending.
+        const value = searchValue.trim();
+
+        // checks if searched chapter string has chapter word init.
+        // if search string includes chapter word it searches the value as it is
+        // or else it adds Chapter-{num} to the location href
+        if(value.toLocaleLowerCase().includes("chapter")) return location.href = `#${value}`;
+        location.href = `#Chapter-${value}`;
     }
     return (
         <form className='flex items-center gap-2 bg-white px-3 py-2 dark:bg-[#10171E]' onSubmit={handleSearch}>

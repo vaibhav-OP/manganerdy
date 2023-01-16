@@ -64,14 +64,14 @@ export default function LatestCreated({ latestComics }) {
             {latestComics?.map((comic, index) => {
                 return (<div key={index}
                     className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
-                    style={{ backgroundImage: `url("${comic.profilePhotoLocation}")`}}>
+                    style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
                         <div className="h-full backdrop-blur-xl bg-black/60 px-5 py-6 flex gap-4 items-center">
                             <div className="h-60 min-w-[180px] w-auto relative">
                                 <Link href={`/comic/${comic._id}`}>
                                     <Image
                                         src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-                                        width="180"
-                                        height="250"
+                                        width="179"
+                                        height="256"
                                         sizes="100vw"
                                         alt={comic.title}
                                         className="max-h-full rounded-md"/>

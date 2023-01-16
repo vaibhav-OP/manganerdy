@@ -8,6 +8,8 @@ const comicChapterSchema = new Schema({
         name: String,
         url: [String],
     }],
+}, {
+    timestamps: true
 })
 
 export default mongoose.model("chapters", comicChapterSchema)

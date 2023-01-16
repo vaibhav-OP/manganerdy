@@ -125,12 +125,17 @@ router.get("/search", async(
 router.get("/chapter", async(req, res) => {
     const { id, name } = req.query;
 
+    // gets all chapters from the db
+    // need to add something like where so it only gets the specific object inside chapters array.
+    // which will help to remove the code which does it by nodejs feature not mongoose.
     const chapterObjRaw = await chaptersSchema.findById(id).exec()
-    if(!chapterObjRaw) return res.status(404).send()
+    if(!chapterObjRaw) return res.status(404).send();
 
+    // gets the specific chapter by find it by name
+    // I wanna use some in-built mongoose feature which im unaware of
     const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
 
-    if(!chapterFinal) return res.status(404).send()
+    if(!chapterFinal) return res.status(404).send();
     chapterFinal.url = chapterFinal.url.sort((a:any,b:any) => {return a.split("_")[0].split("/").pop()-b.split("_")[0].split("/").pop()});
 
     res.send(chapterFinal)
@@ -159,6 +164,8 @@ router.post("/chapter", async(req, res) => {
         url: []
     }
 
+    // had to do this inside promise because the mongoose was saving the chapters before
+    // the urls even get pushed inside the chapterObj
     await Promise.all(data.map(async(url, index) => {
         const extension = url.split('.').pop();
         const filename = uuidv4() + "." + extension;
@@ -166,6 +173,8 @@ router.post("/chapter", async(req, res) => {
 
         if(!extension || extension === "Index") return;
 
+        // this ImageDownloading package is awasome, it does the work very well
+        // use to use custom function which had error handling problems :(
         await imageDownloader.image({
             url: chapter_url + url,
             dest: path.join(__dirname, `../public/images/${chapterNum}_${filename}`),
@@ -182,6 +191,10 @@ router.post("/chapter", async(req, res) => {
     res.send({ status: "ok" })
 })
 
+/*
+    ALL THE INTERFACES ARE HERE <3
+    might create a file in future
+*/
 interface SearchQuery {
     title: string,
     genre: string
