@@ -11,7 +11,10 @@
     "dev:server": "yarn workspace server dev",
     "dev:client": "yarn workspace client dev",
     "dev": "concurrently \"yarn workspace client dev\" \"yarn workspace server dev\"",
-    "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\""
+    "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
+    "build:server": "yarn workspace server build",
+    "build:client": "yarn workspace client build",
+    "build": "concurrently \"yarn workspace client build\" \"yarn workspace server build\""
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
