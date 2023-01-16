@@ -14,7 +14,23 @@ export default async function Head({ params }) {
   const comic = await getPostTitle(params.id);
     return (
       <>
-        <title>{comic?.title || "Unkown" + " - Apex Manga"}</title>
+        <title>{comic?.title || "Unkown" + " - Manganerdy"}</title>
+        <meta name="description" content={comic?.description}/>
+        <meta name="keywords" content={"manganerdy, manganerd, manga, manwha, manhua, fast upload, reader free online, comics, comic,"+comic?.title+", "+comic?.title+"[All Chapters]"}/>
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content={"https://manganerdy.com/comic/" + params.id}/>
+        <meta property="og:title" content={comic?.title || "Unkown" + " - Manganerdy"}/>
+        <meta property="og:description" content={comic?.description}/>
+        <meta property="og:image" content={"https://manganerdy.com/server" + comic?.profilePhotoLocation}/>
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content={"https://manganerdy.com/comic/" + params.id}/>
+        <meta property="twitter:title" content={comic?.title || "Unkown" + " - Manganerdy"}/>
+        <meta property="twitter:description" content={comic?.description}/>
+        <meta property="twitter:image" content={"https://manganerdy.com/server" + comic?.profilePhotoLocation}></meta>
       </>
     )
   }

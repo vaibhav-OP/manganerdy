@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: [process.env.NEXT_PUBLIC_serverURL]
+    domains: [process.env.NEXT_PUBLIC_serverName]
   },
   experimental: {
     appDir: true,
