@@ -183,10 +183,14 @@ router.post("/chapter", async(req, res) => {
             chapterObj.url.push("/images/" + `${chapterNum}_${filename}`)
         })
         .catch(err => { res.status(500).send() })
-    })).then(() => {
+    })).then(async () => {
+        // pushing the chapterObj to the data base and saving it.
         chapter.chapters.push(chapterObj)
-        chapter.save()
-        comic.save()
+        await chapter.save()
+
+        // update the comic OBJECT updatedAt
+        comic.timesUpdated += 1;
+        await comic.save()
     })
 
     res.send({ status: "ok" })

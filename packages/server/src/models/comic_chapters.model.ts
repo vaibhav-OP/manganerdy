@@ -7,7 +7,7 @@ const comicChapterSchema = new Schema({
     chapters: [{
         name: String,
         url: [String],
-    }],
+    }]
 }, {
     timestamps: true
 })
