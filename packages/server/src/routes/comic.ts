@@ -49,7 +49,7 @@ router.get("/latest_updated", async(req, res) => {
     try {
         const comicData = await comicSchema.find()
                                 .select('title authorName profilePhotoLocation genre')
-                                .sort({updatedAt: -1})
+                                .sort({"updatedAt": -1})
                                 .limit(limit)
                                 .skip(limit * page)
                                 .exec();
@@ -151,7 +151,7 @@ router.post("/chapter", async(req, res) => {
         chapter_url
     } = req.body;
 
-    const comic = await comicSchema.findById(id)
+    const comic = await comicSchema.findByIdAndUpdate(id)
         .select("chapters")
     if(!comic) return res.status(404).send();
 
@@ -186,6 +186,7 @@ router.post("/chapter", async(req, res) => {
     })).then(() => {
         chapter.chapters.push(chapterObj)
         chapter.save()
+        comic.save()
     })
 
     res.send({ status: "ok" })
