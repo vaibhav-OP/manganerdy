@@ -11,6 +11,8 @@
     "dev:server": "yarn workspace server dev",
     "dev:client": "yarn workspace client dev",
     "dev": "concurrently \"yarn workspace client dev\" \"yarn workspace server dev\"",
+    "start:server": "yarn workspace server start",
+    "start:client": "yarn workspace client start",
     "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
     "build:server": "yarn workspace server build",
     "build:client": "yarn workspace client build",
@@ -49,7 +51,7 @@
     "image-downloader": "^4.3.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.7.2",
-    "next": "^13.1.1",
+    "next": "^13.1.4",
     "node-fetch": "2.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -57,6 +59,7 @@
     "react-refresh": "^0.14.0",
     "react-toastify": "^9.1.1",
     "request": "^2.88.2",
+    "sharp": "^0.31.3",
     "uuid": "^9.0.0"
   }
 }

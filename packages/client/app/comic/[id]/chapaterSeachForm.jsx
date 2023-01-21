@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { CgSearch } from "react-icons/cg";
 
-export default function() {
+export default function ChapterSearchForm() {
     const [searchValue, setSearchValue] = useState("");
 
     function handleSearch(e) {

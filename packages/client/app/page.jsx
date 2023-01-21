@@ -2,7 +2,7 @@ import LatestCreated from '../components/latestCreated';
 import LatestUpdated from '../components/latestUpdated';
 import MostViewedComics from "../components/MostViewedComics";
 
-export default async function() {
+export default async function HomePage() {
   const latestComics = await getLatestComics();
   const mostViewedComics = await getMostViewedComics();
   const lastestUpdatedComics = await getLatestUpdatedComics();

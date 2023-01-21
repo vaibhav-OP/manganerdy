@@ -5,13 +5,14 @@ import { HiOutlineBookOpen } from "react-icons/hi";
 
 import SearchForm from "./chapaterSeachForm"
 
-export default async function({ params }) {
+export default async function ComicPage({ params }) {
+    if(!params.id) notFound();
 
-    const comicData = await getComicData(params.id)
+    const comicData = await getComicData(params.id);
+    if(!comicData) notFound();
 
-    const chapters = comicData?.chapters?.chapters?.map((chapter) => {
-        return (
-            <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${comicData.chapters._id}`}>
+    const chapters = comicData?.chapters?.chapters?.map((chapter, index) => {
+        return <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${comicData.chapters._id}`} key={index}>
                 <li id={`${chapter.name.toLowerCase()}`}
                     className='font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
                     <div className='gap-2 flex items-center'>
@@ -20,13 +21,12 @@ export default async function({ params }) {
                     </div>
                 </li>
             </Link>
-        )
     })
 
     return (
         <div className='pb-6 dark:text-white'>
             <div
-                style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})`}}
+                style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
                 className="relative bg-cover bg-center bg-no-repeat">
                 <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
                     <div className="h-64 w-auto relative">
@@ -63,10 +63,10 @@ export default async function({ params }) {
 }
 
 async function getComicData(id) {
-    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic/${id}`, { cache: 'no-store' })
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic/${id}`, { next: { revalidate: 30 } })
         .then(res => res.json())
         .catch(error => {})
 
-    if(!response || response.status !== "ok") notFound();
+    if(!response) return;
     return response.data;
 }
