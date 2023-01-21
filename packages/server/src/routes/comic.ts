@@ -152,7 +152,7 @@ router.post("/chapter", async(req, res) => {
     } = req.body;
 
     const comic = await comicSchema.findById(id)
-        .select("chapters")
+        .select("chapters timesUpdated")
     if(!comic) return res.status(404).send();
 
     const chapter = await chaptersSchema.findByIdAndUpdate(comic.chapters._id)
@@ -189,8 +189,8 @@ router.post("/chapter", async(req, res) => {
         await chapter.save()
 
         // update the comic OBJECT updatedAt
-        // comic.timesUpdated += 1;
-        // await comic.save()
+        comic.timesUpdated += 1;
+        await comic.save()
     })
 
     res.send({ status: "ok" })
