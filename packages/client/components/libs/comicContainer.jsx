@@ -27,7 +27,7 @@ export default function ComicContainer({ comic }) {
                     />
                 </Link>
             </div>
-            <div className="sm:w-2/4 w-[calc(100%-120px)] font-poppin text-[#242424] dark:text-white/80 flex flex-col justify-between">
+            <div className="sm:w-2/4 w-[calc(100%-120px)] font-poppin text-[#242424] dark:text-white flex flex-col justify-between">
                 <Link href={`/comic/${comic._id}`}>
                     <h6 className="font-bold text-base w-full hover:cursor-pointer">{comic.title}</h6>
                 </Link>
@@ -35,10 +35,10 @@ export default function ComicContainer({ comic }) {
                     <div className="flex gap-1 overflow-hidden">
                         <span className="flex items-center"><IoMdPricetag /></span>
                         {comic.genre?.map((tag, index) => {
-                            return <span key={index}>{tag}</span>
+                            return <span key={index}>{tag},</span>
                         })}
                     </div>
-                    <div className="flex items-center gap-1 font-bold">
+                    <div className="flex items-center gap-1">
                         <FiUsers />
                         <div className="overflow-hidden whitespace-nowrap text-ellipsis"><span>{comic.authorName}</span></div>
                     </div>

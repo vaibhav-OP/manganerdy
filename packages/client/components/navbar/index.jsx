@@ -36,7 +36,7 @@ export default function Navbar() {
     }
     return (
         <div>
-            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr] items-center fixed z-10">
+            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr] items-center fixed z-10 shadow-2xl">
                 <Link href="/" className="cursor-pointer flex">
                     <Image
                         width={120}
