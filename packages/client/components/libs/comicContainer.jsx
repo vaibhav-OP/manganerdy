@@ -9,18 +9,21 @@ import { IoMdPricetag } from "react-icons/io";
 
 export default function ComicContainer({ comic }) {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isFailed, setIsFailed] = useState(false);
 
     if(!comic) return;
     return (
         <div className="flex flex-row sm:w-[350px] w-full gap-2 p-3">
             <div className="relative w-[120px] h-[167px] shadow-2xl hover:cursor-pointer rounded-lg overflow-hidden">
                 <Link href={`/comic/${comic._id}`}>
-                    {!isLoaded &&<ImageSkeleton />}
+                    {!isLoaded && <ImageSkeleton /> }
                     <Image
-                        src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                        src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                         alt={comic.title}
                         fill
+                        className="object-cover"
                         onLoad={() => setIsLoaded(true)}
+                        onError={() => {setIsLoaded(false); setIsFailed(true)}}
                     />
                 </Link>
             </div>

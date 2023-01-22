@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+import ImageSkeleton from "../libs/imageSkeleton";
 import SlideChangerButtons from "./slideChangerButtons";
 
 export default function LatestCreated({ latestComics }) {
@@ -62,39 +63,47 @@ export default function LatestCreated({ latestComics }) {
                 onTouchMove={handleTouchMove}
                 onTouchStart={handleTouchStart}>
             {latestComics?.map((comic, index) => {
-                return (<div key={index}
-                    className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
-                    style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
-                        <div className="h-full backdrop-blur-xl bg-black/60 px-5 py-6 flex gap-4 items-center">
-                            <div className="h-60 min-w-[180px] w-auto relative">
-                                <Link href={`/comic/${comic._id}`}>
-                                    <Image
-                                        src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-                                        width="179"
-                                        height="256"
-                                        sizes="100vw"
-                                        alt={comic.title}
-                                        className="max-h-full rounded-md"/>
-                                </Link>
-                            </div>
-                            <div className="h-full flex flex-col justify-between py-5">
-                                <div className="flex flex-col gap-2">
-                                    <Link href={`/comic/${comic._id}`}>
-                                        <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
-                                    </Link>
-                                    <div className="line-clamp-5">
-                                        <span className="hidden md:block font-normal text-base text-white/90" dangerouslySetInnerHTML={{__html: comic.description}}/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-lg italic">{comic.authorName}</h3>
-                                </div>
-                            </div>
-                        </div>
-                </div>)
+                return <Slide comic={comic} key={index}/>
             })}
             </div>
             {(latestComics.length !== 0) && <SlideChangerButtons currentSlide={currentSlide} setcurrentSlide={setcurrentSlide} ulElement={ulElement}/>}
         </div>
     )
+}
+
+function Slide({ comic }) {
+    const [isFailed, setIsFailed] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    return <div className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
+                style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
+                    <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-transparent">
+                        <div className="h-60 min-w-[180px] w-auto relative">
+                            <Link href={`/comic/${comic._id}`}>
+                                {!isLoaded && <ImageSkeleton />}
+                                <Image
+                                    src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                                    width="176"
+                                    height="256"
+                                    alt={comic.title}
+                                    className="max-h-full rounded-md h-64 w-44"
+                                    onLoad={() => setIsLoaded(true)}
+                                    onError={() => {setIsLoaded(false); setIsFailed(true)}}/>
+                            </Link>
+                        </div>
+                        <div className="h-full flex flex-col justify-between py-5">
+                            <div className="flex flex-col gap-2">
+                                <Link href={`/comic/${comic._id}`}>
+                                    <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
+                                </Link>
+                                <div className="line-clamp-5">
+                                    <span className="hidden md:block font-normal text-base text-white/90" dangerouslySetInnerHTML={{__html: comic.description}}/>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className="text-lg italic">{comic.authorName}</h3>
+                            </div>
+                        </div>
+                    </div>
+            </div>
 }
