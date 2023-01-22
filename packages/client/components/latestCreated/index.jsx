@@ -77,7 +77,7 @@ function Slide({ comic }) {
 
     return <div className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
                 style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
-                    <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-transparent">
+                    <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
                         <div className="h-60 min-w-[180px] w-auto relative">
                             <Link href={`/comic/${comic._id}`}>
                                 {!isLoaded && <ImageSkeleton />}
