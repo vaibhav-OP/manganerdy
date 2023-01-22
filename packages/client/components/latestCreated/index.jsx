@@ -86,7 +86,7 @@ function Slide({ comic }) {
                                     width="176"
                                     height="256"
                                     alt={comic.title}
-                                    className="max-h-full rounded-md h-64 w-44"
+                                    className="max-h-full rounded-md h-64 w-44 object-cover"
                                     onLoad={() => setIsLoaded(true)}
                                     onError={() => {setIsLoaded(false); setIsFailed(true)}}/>
                             </Link>
