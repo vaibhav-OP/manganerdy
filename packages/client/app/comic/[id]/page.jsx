@@ -14,7 +14,7 @@ export default async function ComicPage({ params }) {
     const chapters = comicData?.chapters?.chapters?.map((chapter, index) => {
         return <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${comicData.chapters._id}`} key={index}>
                 <li id={`${chapter.name.toLowerCase()}`}
-                    className='font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
+                    className='transition-all font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
                     <div className='gap-2 flex items-center'>
                         <HiOutlineBookOpen />
                         <h6 className=''>{chapter.name}</h6>
@@ -51,7 +51,7 @@ export default async function ComicPage({ params }) {
                         <div className='py-2 px-2 flex justify-end dark:bg-[#15202B] bg-[#f0f1f2] shadow-2xl'>
                             <SearchForm />
                         </div>
-                        <ul className='mt-6 dark:bg-[#15202B] bg-[#f0f1f2] max-h-80 overflow-y-scroll scroll-smooth scrollbar-none'>{chapters}</ul>
+                        <ul className='mt-6 dark:bg-[#15202B] bg-[#f0f1f2] max-h-80 overflow-y-scroll scroll-smooth scrollbar-none gap-1'>{chapters}</ul>
                     </div>
                 </div>
             </div>
