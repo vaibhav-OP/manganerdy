@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
-import SearchForm from "./chapaterSeachForm"
+import ComicImage from './ComicImage';
+import SearchForm from "./chapaterSeachForm";
 
 export default async function ComicPage({ params }) {
     if(!params.id) notFound();
-
     const comicData = await getComicData(params.id);
     if(!comicData) notFound();
 
@@ -29,12 +29,9 @@ export default async function ComicPage({ params }) {
                 style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
                 className="relative bg-cover bg-center bg-no-repeat">
                 <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
-                    <div className="h-64 w-auto relative">
-                        <Image
-                            height="256"
-                            width="179"
-                            src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
-                            className="w-auto h-full rounded-lg"
+                    <div className="h-64 w-44 relative rounded-md overflow-hidden">
+                        <ComicImage src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
+                                    alt={comicData?.title}
                         />
                     </div>
                     <div className="text-white/80">

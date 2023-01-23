@@ -78,17 +78,18 @@ function Slide({ comic }) {
     return <div className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
                 style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
                     <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
-                        <div className="h-60 min-w-[180px] w-auto relative">
+                        <div className="h-56 min-w-44 relative rounded-md overflow-hidden">
                             <Link href={`/comic/${comic._id}`}>
                                 {!isLoaded && <ImageSkeleton />}
                                 <Image
-                                    src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-                                    width="176"
-                                    height="256"
+                                    fill
                                     alt={comic.title}
-                                    className="max-h-full rounded-md h-64 w-44 object-cover"
+                                    className="rounded-md object-cover"
+                                    src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+
                                     onLoad={() => setIsLoaded(true)}
-                                    onError={() => {setIsLoaded(false); setIsFailed(true)}}/>
+                                    onError={() => {setIsLoaded(false); setIsFailed(true)}}
+                                />
                             </Link>
                         </div>
                         <div className="h-full flex flex-col justify-between py-5">
