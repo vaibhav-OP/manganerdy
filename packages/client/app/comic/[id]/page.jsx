@@ -28,7 +28,7 @@ export default async function ComicPage({ params }) {
             <div
                 style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
                 className="relative bg-cover bg-center bg-no-repeat">
-                <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-black/75 backdrop-blur-md">
+                <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm">
                     <div className="h-64 w-44 relative rounded-md overflow-hidden">
                         <ComicImage src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
                                     alt={comicData?.title}
