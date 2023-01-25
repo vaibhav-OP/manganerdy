@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
+
+import Images from "./Images";
 
 export default async function ChaptersPage({ searchParams }) {
     if(!searchParams.name || !searchParams.id) notFound();
@@ -7,17 +8,7 @@ export default async function ChaptersPage({ searchParams }) {
     const data = await getChapterData(searchParams.id, searchParams.name)
     if(!data) notFound();
 
-    // might be using the NEXT.JS image tag in future but for now i have to idea
-    // how to make its height auto and width the size of container.
-    const images = data?.url.map((url) => {
-        return <img src={process.env.NEXT_PUBLIC_serverURL + url} />
-    })
-
-    return  <div className="flex">
-                <div className="max-w-2xl mx-auto">
-                    {images}
-                </div>
-            </div>
+    return <Images data={data}/>
 }
 
 async function getChapterData(id, name){

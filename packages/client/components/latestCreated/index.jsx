@@ -78,12 +78,13 @@ function Slide({ comic }) {
     return <div className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
                 style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
                     <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
-                        <div className="h-56 min-w-44 relative rounded-md overflow-hidden">
+                        <div className="h-56 min-w-[176px] relative rounded-md overflow-hidden">
                             <Link href={`/comic/${comic._id}`}>
                                 {!isLoaded && <ImageSkeleton />}
                                 <Image
-                                    fill
                                     alt={comic.title}
+                                    height="224"
+                                    width="176"
                                     className="rounded-md object-cover"
                                     src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
 
