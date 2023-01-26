@@ -123,7 +123,7 @@ router.get("/search", async(
     Get chapter
 */
 router.get("/chapter", async(req, res) => {
-    const { id, name } = req.query;
+    const { id } = req.query;
 
     // gets all chapters from the db
     // need to add something like where so it only gets the specific object inside chapters array.
@@ -131,14 +131,15 @@ router.get("/chapter", async(req, res) => {
     const chapterObjRaw = await chaptersSchema.findById(id).exec()
     if(!chapterObjRaw) return res.status(404).send();
 
+    res.send(chapterObjRaw)
     // gets the specific chapter by find it by name
     // I wanna use some in-built mongoose feature which im unaware of
-    const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
+    // const chapterFinal = chapterObjRaw.chapters.find(chapter => chapter.name === name);
 
-    if(!chapterFinal) return res.status(404).send();
-    chapterFinal.url = chapterFinal.url.sort((a:any,b:any) => {return a.split("_")[0].split("/").pop()-b.split("_")[0].split("/").pop()});
+    // if(!chapterFinal) return res.status(404).send();
+    // chapterFinal.url = chapterFinal.url.sort((a:any,b:any) => {return a.split("_")[0].split("/").pop()-b.split("_")[0].split("/").pop()});
 
-    res.send(chapterFinal)
+    // res.send(chapterFinal)
 })
 
 /*

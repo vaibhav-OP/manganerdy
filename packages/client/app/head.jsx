@@ -5,7 +5,7 @@ export default function HomeHeader() {
       <meta name="description" content="Read Manga, Manwha, Manhua online free, update fastest, most full, synthesized with high-quality images, with full English translation. all manga update daily."/>
       <meta name="keywords" content="manganerdy, manganerd, manga, manwha, manhua, fast upload, reader free online, comics, comic"/>
       <meta name="robots" content="index, follow"/>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website"/>
