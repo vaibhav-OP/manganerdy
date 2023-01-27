@@ -10,7 +10,9 @@ export default function Images({ data }) {
     const [CurrentImageIndex, setCurrentImageIndex] = useState(0)
     // might be using the NEXT.JS image tag in future but for now i have to idea
     // how to make its height auto and width the size of container.
-    const images = data?.url.map((url, index) => <img src={process.env.NEXT_PUBLIC_serverURL + url} key={index} data-index-number={index} loading="lazy" className="min-h-screen"/>)
+    const images = data?.url
+                        .sort((a,b) => {return a.split("_")[0].split("/").pop()-b.split("_")[0].split("/").pop()})
+                        .map((url, index) => <img src={process.env.NEXT_PUBLIC_serverURL + url} key={index} data-index-number={index} loading="lazy" className="min-h-screen"/>)
 
     const bars = data?.url.map((url, index) => <div className="border-r border-transparent bg-slate-600 items-stretch w-full transition-all duration-500 bars" key={index}></div>)
 
