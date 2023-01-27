@@ -11,7 +11,7 @@ export default async function ComicPage({ params }) {
     if(!comicData) notFound();
 
     const chapters = comicData?.chapters?.chapters?.map((chapter, index) => {
-        return <Link href={`/comic/${comicData?._id}/chapter?name=${chapter.name}&id=${comicData.chapters._id}`} key={index}>
+        return <Link href={`/comic/${params.id}/chapter/${comicData.chapters._id}/${chapter.name}`} key={index}>
                 <li id={`${chapter.name.toLowerCase()}`}
                     className='transition-all font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
                     <div className='gap-2 flex items-center'>

@@ -1,15 +1,11 @@
-"use client"
 import Link from "next/link";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useSearchParams, usePathname } from 'next/navigation';
 
-export default function ChapterContainer({ children, data, currentChapter, currentChapterIndex }) {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+export default function ChapterContainer({ params, children, data, currentChapter, currentChapterIndex }) {
 
     const NextBtn = () => {
         if (currentChapterIndex < data.chapters.length-1) {
-            return <Link href={`${pathname}?name=${data.chapters[currentChapterIndex+1]?.name}&id=${searchParams.get("id")}`}
+            return <Link href={`/comic/${params.id}/chapter/${params.chapterId}/${data.chapters[currentChapterIndex+1]?.name}`}
                 className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] disabled:cursor-not-allowed cursor-pointer"><FaArrowRight /></Link>
         } else {
             return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60">
@@ -20,7 +16,7 @@ export default function ChapterContainer({ children, data, currentChapter, curre
 
     const PreviousBtn = () => {
         if (currentChapterIndex > 0) {
-            return  <Link href={`${pathname}?name=${data.chapters[currentChapterIndex-1]?.name}&id=${searchParams.get("id")}`}
+            return  <Link href={`/comic/${params.id}/chapter/${params.chapterId}/${data.chapters[currentChapterIndex-1]?.name}`}
                 className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] disabled:cursor-not-allowed cursor-pointer"><FaArrowLeft /></Link>
         } else {
             return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60">
