@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
 import ComicImage from './ComicImage';
-import SearchForm from "./chapaterSeachForm";
+import ChaptersList from './ChaptersList';
 
 export default async function ComicPage({ params }) {
     if(!params.id) notFound();
@@ -41,17 +41,10 @@ export default async function ComicPage({ params }) {
             </div>
             <div className='w-full lg:w-11/12 mx-auto'>
                 <div className='sm:px-2 px-4 mt-3'>
-                    <div className='border-b-8 border-themeColor'>
-                        <ul className='flex gap-2'>
-                            <li className='bg-themeColor text-white py-2 px-5 rounded-t font-medium text-lg'>Chapters</li>
-                        </ul>
+                    <div className='border-b-8 border-themeColor flex gap-2'>
+                        <h4 className='bg-themeColor text-white py-2 px-5 rounded-t font-medium text-lg'>Chapters</h4>
                     </div>
-                    <div>
-                        <div className='py-2 px-2 flex justify-end dark:bg-[#15202B] bg-[#f0f1f2] shadow-2xl'>
-                            <SearchForm />
-                        </div>
-                        <ul className='mt-6 dark:bg-[#15202B] bg-[#f0f1f2] max-h-80 overflow-y-scroll scroll-smooth scrollbar-none gap-1'>{chapters}</ul>
-                    </div>
+                    <ChaptersList chapters={chapters}/>
                 </div>
             </div>
         </div>

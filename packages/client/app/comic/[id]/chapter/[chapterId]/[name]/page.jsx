@@ -11,8 +11,8 @@ export default async function ChaptersPage({ params }) {
 
     /**
      * Find the chapter with name
-     * @param {string} name
-     * @returns object
+     * @param {String} name
+     * @returns Object
     */
     const findChapterByName = (name) => {
         return data.chapters.find(chapter => chapter.name === name)
