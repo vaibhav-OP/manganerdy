@@ -36,7 +36,7 @@ export default function ChapterContainer({ params, children, data, currentChapte
         {children}
         <div className="flex w-full gap-5 justify-center px-5 sm:px-0 ">
             <PreviousBtn />
-            <ChaptersDropDown name={currentChapter.name} chapters={data.chapters} comicId={params.id} chapterId={params.chapterId}/>
+            <ChaptersDropDown name={currentChapter.name} chapters={data.chapters} comicId={params.id} chapterId={params.chapterId} top={false} />
             <NextBtn />
         </div>
     </div>
