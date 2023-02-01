@@ -30,7 +30,7 @@ const ChaptersDropDown = ({ name, chapters, comicId, chapterId, top=true }) => {
             {name}
             <DropDownBtns />
         </button>
-        {isOpen && <ul className={"bg-[#f0f1f2] flex rounded-md flex-col overflow-hidden w-full absolute "+ (top?"top-8":"bottom-8")}>{li}</ul>}
+        {isOpen && <ul className={"bg-[#f0f1f2] flex rounded-md flex-col max-h-[110px] overflow-x-auto w-full absolute "+ (top?"top-8":"bottom-8")}>{li}</ul>}
     </div>
 }
 
