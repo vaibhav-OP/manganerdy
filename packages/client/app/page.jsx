@@ -29,7 +29,7 @@ export default async function HomePage() {
 async function getLatestComics() {
   const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_created", { cache: 'no-store' })
     .then(res => res.json())
-    .catch((error) => {});
+    .catch((error) => { console.log(error) });
 
   if(!response) return [];
   return response.data;
@@ -39,7 +39,7 @@ async function getLatestComics() {
 async function getMostViewedComics() {
   const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/most_viewed?limit=10&page=0", { cache: 'no-store' })
     .then(res => res.json())
-    .catch((error) => {});
+    .catch((error) => { console.log(error) });
 
   if(!response) return [];
   return response.data;
@@ -49,7 +49,7 @@ async function getMostViewedComics() {
 async function getLatestUpdatedComics() {
   const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_updated?limit=25&page=0", { cache: 'no-store' })
     .then(res => res.json())
-    .catch((error) => {});
+    .catch((error) => { console.log(error) });
 
   if(!response) return []
   return response.data

@@ -11,7 +11,7 @@ export default async function({ searchParams }) {
         <div className="w-full select-none mx-auto flex flex-col justify-center items-center min-h-[calc(100vh-250px)] gap-2">
             <div className="text-9xl"><TbMoodCry /></div>
             <div className="text-center">
-                <h1 className="font-bold text-xl w-full">sorry, we couldn't find any results</h1>
+                <h1 className="font-bold text-xl w-full">sorry, we couldn&apos;t find any results</h1>
                 <span>Try searching something else</span>
             </div>
         </div>

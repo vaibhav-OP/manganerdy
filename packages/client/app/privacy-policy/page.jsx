@@ -1,4 +1,4 @@
-export default function() {
+export default function PrivacyPolicy() {
     return (
         <div className="flex justify-center">
             <div className="max-w-5xl px-3">

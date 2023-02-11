@@ -6,7 +6,7 @@ import LoginComponent from "./Login.component";
 import SidePanel from "../../components/admin/sidePanel";
 import MainScreen from "../../components/admin/mainScreen";
 
-export default function() {
+export default function AdminPanel() {
     const [page, setPage] = useState("addPage");
     const [Admin, setAdmin] = useState(false);
 
