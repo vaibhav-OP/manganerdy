@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
 
-import ThemeToggleBtn from "./themeToggleBtn";
 import UserProfile from "./userProfile";
+import ThemeToggleBtn from "./themeToggleBtn";
 
 export default function Navbar() {
     const [searchValue, setSearchValue] = useState("");
@@ -36,7 +36,7 @@ export default function Navbar() {
     }
     return (
         <div>
-            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr] items-center fixed z-10 shadow-2xl">
+            <div className="w-full h-20 dark:bg-darkthemeLinearGradient bg-themeLinearGradient text-white grid grid-cols-[auto,auto,1fr] items-center fixed shadow-2xl z-50">
                 <Link href="/" className="cursor-pointer flex">
                     <Image
                         width={120}

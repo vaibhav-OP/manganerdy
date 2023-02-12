@@ -1,3 +1,5 @@
+"use client"
+
 export default function ThemeToggleBtn() {
 	function toggleTheme() {
 		const bodyEl = document.body

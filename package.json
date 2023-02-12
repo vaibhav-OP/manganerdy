@@ -40,6 +40,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@next/react-refresh-utils": "^13.1.6",
     "@tinymce/tinymce-react": "^4.2.0",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
@@ -55,7 +56,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
-    "react-refresh": "^0.14.0",
+    "react-refresh": "0.12.0",
     "react-toastify": "^9.1.1",
     "request": "^2.88.2",
     "sharp": "^0.31.3",
