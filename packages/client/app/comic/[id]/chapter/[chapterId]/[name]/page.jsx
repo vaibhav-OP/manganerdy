@@ -12,15 +12,24 @@ export default async function ChaptersPage({ params }) {
     /**
      * Find the chapter with name
      * @param {String} name
-     * @returns Object
+     * @return Object
     */
     const findChapterByName = (name) => {
         return data.chapters.find(chapter => chapter.name === decodeURI(name))
     }
 
+    /**
+     * Find the Index of the chapter
+     * @param {String} name
+     * @return Object
+     */
+    const findChapterIndex = (name) => {
+        return data.chapters.findIndex(chapter => chapter.name === decodeURI(name))
+    }
+
     // find the current chapter from the data
     const currentChapter = findChapterByName(params.name);
-    const currentChapterIndex = data.chapters.findIndex(chapter => chapter.name === params.name);
+    const currentChapterIndex = findChapterIndex(params.name)
 
     return <ChapterContainer params={params} data={data} currentChapter={currentChapter} currentChapterIndex={currentChapterIndex}>
         <Images data={currentChapter}/>
