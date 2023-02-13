@@ -26,7 +26,7 @@ export default function ChaptersList({ chapters }) {
         })
     }
 
-    return  <div>
+    return  <>
         <div className='py-2 px-2 flex justify-end dark:bg-[#15202B] bg-[#f0f1f2] shadow-xl'>
             <div className='flex items-center gap-2 bg-white px-3 py-2 dark:bg-[#10171E]'>
                 <div><CgSearch /></div>
@@ -39,6 +39,6 @@ export default function ChaptersList({ chapters }) {
                     className='focus-visible:outline-none dark:bg-[#10171E]'/>
             </div>
         </div>
-        <ul className='mt-6 dark:bg-[#15202B] bg-[#f0f1f2] max-h-80 overflow-y-scroll scroll-smooth scrollbar-none gap-1' ref={ChaptersUl}>{chapters}</ul>
-    </div>
+        <ul className='mt-1 dark:bg-[#15202B] bg-[#f0f1f2] max-h-80 overflow-y-scroll scroll-smooth scrollbar-none gap-1' ref={ChaptersUl}>{chapters}</ul>
+    </>
 }
