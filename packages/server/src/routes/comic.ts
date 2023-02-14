@@ -183,7 +183,7 @@ router.post("/chapter", async(req, res) => {
         .then(() => {
             chapterObj.url.push("/images/" + `${chapterNum}_${filename}`)
         })
-        .catch(err => { })
+        .catch(err => undefined)
     })).then(async () => {
         // pushing the chapterObj to the data base and saving it.
         chapter.chapters.push(chapterObj)
