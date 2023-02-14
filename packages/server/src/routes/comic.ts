@@ -165,6 +165,8 @@ router.post("/chapter", async(req, res) => {
         url: []
     }
 
+
+    console.log(data)
     // had to do this inside promise because the mongoose was saving the chapters before
     // the urls even get pushed inside the chapterObj
     await Promise.all(data.map(async(url, index) => {
@@ -172,8 +174,8 @@ router.post("/chapter", async(req, res) => {
         const filename = uuidv4() + "." + extension;
         const chapterNum = url.split(".")[0]
 
-        if(!extension || extension === "Index") return;
-
+        if(!extension || extension === "Index" || extension === " ") return;
+        if(/\r|\n/.exec(filename) !== null) return;
         // this ImageDownloading package is awasome, it does the work very well
         // use to use custom function which had error handling problems :(
         await imageDownloader.image({
@@ -187,11 +189,11 @@ router.post("/chapter", async(req, res) => {
     })).then(async () => {
         // pushing the chapterObj to the data base and saving it.
         chapter.chapters.push(chapterObj)
-        await chapter.save()
+        // await chapter.save()
 
         // update the comic OBJECT updatedAt
         comic.timesUpdated += 1;
-        await comic.save()
+        // await comic.save()
     })
 
     res.send({ status: "ok" })
