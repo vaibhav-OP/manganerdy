@@ -52,7 +52,7 @@ export default async function ComicPage({ params }) {
 }
 
 async function getComicData(id) {
-    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic/${id}`, { next: { revalidate: 30 } })
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/comic/${id}`, { cache: 'no-store' })
         .then(res => res.json())
         .catch(error => {})
 

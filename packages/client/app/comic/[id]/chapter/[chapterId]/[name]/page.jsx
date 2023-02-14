@@ -45,7 +45,7 @@ async function getChapterData(id){
     // get the chapter image urls from the server the server logic for getting the urls from db is a mess
     // if anyone can help :)
     if(!id) return;
-    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/chapter?id=${id}`, { cache: "no-cache" })
+    const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/chapter?id=${id}`, { cache: 'no-store' })
         .then(res => res.json())
         .catch(error => {
             console.log(error)
