@@ -189,11 +189,11 @@ router.post("/chapter", async(req, res) => {
     })).then(async () => {
         // pushing the chapterObj to the data base and saving it.
         chapter.chapters.push(chapterObj)
-        // await chapter.save()
+        await chapter.save()
 
         // update the comic OBJECT updatedAt
         comic.timesUpdated += 1;
-        // await comic.save()
+        await comic.save()
     })
 
     res.send({ status: "ok" })
