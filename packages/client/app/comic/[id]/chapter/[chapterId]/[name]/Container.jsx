@@ -8,9 +8,9 @@ export default function ChapterContainer({ params, children, data, currentChapte
     const NextBtn = () => {
         if (currentChapterIndex < data.chapters.length-1) {
             return <Link href={`/comic/${params.id}/chapter/${params.chapterId}/${data.chapters[currentChapterIndex+1]?.name}`}
-                className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-[#f0f1f2] hover:bg-[#e6e6e6] min-h-[30px] disabled:cursor-not-allowed cursor-pointer"><FaArrowRight /></Link>
+                className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-[#f0f1f2] hover:bg-[#e6e6e6] min-h-[30px] disabled:cursor-not-allowed cursor-pointer dark:bg-[#15202B]"><FaArrowRight /></Link>
         } else {
-            return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60">
+            return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60 dark:bg-[#10171E]">
                 <FaArrowRight />
             </div>
         }
@@ -19,9 +19,9 @@ export default function ChapterContainer({ params, children, data, currentChapte
     const PreviousBtn = () => {
         if (currentChapterIndex > 0) {
             return  <Link href={`/comic/${params.id}/chapter/${params.chapterId}/${data.chapters[currentChapterIndex-1]?.name}`}
-                className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-[#f0f1f2] hover:bg-[#e6e6e6] min-h-[30px] disabled:cursor-not-allowed cursor-pointer"><FaArrowLeft /></Link>
+                className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-[#f0f1f2] hover:bg-[#e6e6e6] min-h-[30px] disabled:cursor-not-allowed cursor-pointer dark:bg-[#15202B]"><FaArrowLeft /></Link>
         } else {
-            return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60">
+            return <div className="w-32 sm:w-48 h-fit flex justify-center items-center rounded-md bg-gray-300 min-h-[30px] cursor-not-allowed opacity-60 dark:bg-[#10171E]">
                 <FaArrowLeft />
             </div>
         }

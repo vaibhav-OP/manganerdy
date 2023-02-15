@@ -15,7 +15,7 @@ const ChaptersDropDown = ({ name, chapters, comicId, chapterId, top=true }) => {
 
     const li = chapters.map((chapter, index) => {
         return <li key={index}
-            className="py-2 px-3 hover:bg-[#e6e6e6] w-full">
+            className="py-2 px-3 hover:bg-[#e6e6e6] w-full hover:dark:bg-[#10171E]">
                 <Link href={`/comic/${comicId}/chapter/${chapterId}/${chapter.name}`}>{chapter.name}</Link>
             </li>
     });
@@ -26,11 +26,11 @@ const ChaptersDropDown = ({ name, chapters, comicId, chapterId, top=true }) => {
     }
 
     return <div className="relative w-32 sm:w-48 gap-1 flex flex-col">
-        <button className="h-fit min-h-[30px] px-3 flex justify-between items-center rounded-md bg-[#f0f1f2] font-bold cursor-pointer" onClick={handleDrop}>
+        <button className="h-fit min-h-[30px] px-3 flex justify-between items-center rounded-md bg-[#f0f1f2] font-bold cursor-pointer dark:bg-[#15202B]" onClick={handleDrop}>
             {name}
             <DropDownBtns />
         </button>
-        {isOpen && <ul className={"bg-[#f0f1f2] flex rounded-md flex-col max-h-[110px] overflow-x-auto w-full absolute "+ (top?"top-8":"bottom-8")}>{li}</ul>}
+        {isOpen && <ul className={"bg-[#f0f1f2] flex rounded-md flex-col max-h-[110px] overflow-x-auto w-full dark:bg-[#15202B] scrollbar-none absolute "+ (top?"top-8":"bottom-8")}>{li}</ul>}
     </div>
 }
 
