@@ -29,7 +29,7 @@ export default function ComicContainer({ comic }) {
             </div>
             <div className="sm:w-2/4 w-[calc(100%-120px)] font-poppin text-[#242424] dark:text-white flex flex-col justify-between">
                 <Link href={`/comic/${comic._id}`}>
-                    <h6 className="font-bold text-base w-full hover:cursor-pointer">{comic.title}</h6>
+                    <h6 className="font-bold text-base w-full hover:cursor-pointer line-clamp-4">{comic.title}</h6>
                 </Link>
                 <div className="text-sm flex gap-1 flex-col">
                     <div className="flex gap-1 overflow-hidden">
