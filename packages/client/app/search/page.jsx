@@ -1,4 +1,5 @@
 import { TbMoodCry } from "react-icons/tb";
+import { notFound } from 'next/navigation';
 import ComicContainer from "../../components/libs/comicContainer";
 
 /*
@@ -7,15 +8,10 @@ import ComicContainer from "../../components/libs/comicContainer";
 export default async function({ searchParams }) {
     const comics = await getSearchResults(searchParams.title)
 
-    if(comics?.length === 0 || !searchParams.title) return (
-        <div className="w-full select-none mx-auto flex flex-col justify-center items-center min-h-[calc(100vh-250px)] gap-2">
-            <div className="text-9xl"><TbMoodCry /></div>
-            <div className="text-center">
-                <h1 className="font-bold text-xl w-full">sorry, we couldn&apos;t find any results</h1>
-                <span>Try searching something else</span>
-            </div>
-        </div>
-    )
+    if(!comics) {
+        notFound()
+    }
+
     return (
         <div className="my-0 w-full lg:w-11/12 py-7 select-none mx-auto lg:px-0 px-2">
             <h1 className="font-bold text-xl mb-3 w-full">Search Result</h1>
@@ -33,6 +29,6 @@ async function getSearchResults(title) {
         .then(res => res.json())
         .catch((error) => {});
 
-    if(!response) return []
+    if(!response) return undefined;
     return response.data
 }
