@@ -30,5 +30,7 @@ async function getSearchResults(title) {
         .catch((error) => {});
 
     if(!response) return undefined;
+    if(response.data.length === 0) return undefined;
+
     return response.data
 }
