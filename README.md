@@ -1,7 +1,7 @@
 <div align="center">
     <img src="packages/client/public/logo.png" height="120"/>
     <h1>
-        <a href="https://manganerdy.com">Manganerdy</a>
+        <a href="https://manganerdy.com" target="_blank">Manganerdy</a>
     </h1>
     <p>Read Manga,Manwha,manhua online free, update fastest, most full, synthesized with high-quality images, with full English translation. all manga update daily.</p>
 </div>
