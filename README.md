@@ -25,7 +25,13 @@ These instructions should get you set up ready to work on Manganerdy 🙌
 You can use any IDE or code editing tool for developing on any platform. Use your favorite!
 
 ## Environment variables 
-
+Create a `.env` file inside client and server package folder.
 ### Client
+- `NEXT_PUBLIC_serverURL` Backend url (e.g. http://localhost:8080)
+- `NEXT_PUBLIC_serverName` Backend domain name (e.g. localhost)
 
 ### Server
+- `mongoURL` - MongoDB url
+- `clientURL` - Frontend url (e.g. http://localhost:8080)
+- `user_name` - Username for authentication
+- `user_passwrd` - Password for authentication
