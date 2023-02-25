@@ -6,7 +6,21 @@
 </div>
 <p>Read Manga,Manwha,manhua online free, update fastest, most full, synthesized with high-quality images, with full English translation. all manga update daily.</p>
 
-## Local Development
+## 🛠️ Features
+### Added
+- 🟩 Home page.
+- 🟩 Logic to scrap comic from websites.
+- 🟩 Basic Search.
+- 🟩 Easy navigation with chapters.
+
+### To be added
+- 🟥 Advance Search.
+- 🟥 View counting system.
+- 🟥 User Authentication.
+- 🟥 Chat Box on every comic page.
+
+
+## 🏘️ Local Development
 These instructions should get you set up ready to work on Manganerdy 🙌
 
 ### Getting Started
