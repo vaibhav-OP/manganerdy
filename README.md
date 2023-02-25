@@ -37,7 +37,7 @@ Create a `.env` file inside client and server package folder.
 - `NEXT_PUBLIC_serverName` Backend domain name (e.g. localhost)
 
 #### Server
-- `mongoURL` - MongoDB url
-- `clientURL` - Frontend url (e.g. http://localhost:8080)
-- `user_name` - Username for authentication
-- `user_passwrd` - Password for authentication
+- `mongoURL` MongoDB url
+- `clientURL` Frontend url (e.g. http://localhost:8080)
+- `user_name` Username for authentication
+- `user_passwrd` Password for authentication
