@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return(
-        <div className="w-full text-white dark:bg-darkthemeLinearGradient bg-themeLinearGradient transition-colors">
+        <div className="w-full text-white bg-themeLinearGradient transition-colors">
             <div className="flex flex-col items-center">
                 <Image
                     width={168}

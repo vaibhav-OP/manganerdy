@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        themeColor: "#302b63"
+        themeColor: "#302b63",
+        darkColorBg: "#302b63"
       },
       backgroundImage: {
         themeLinearGradient: "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
