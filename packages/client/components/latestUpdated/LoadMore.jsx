@@ -7,16 +7,7 @@ export default function LoadMore({ setComicArray }) {
     const [hasFinished, setHasFinished] = useState(false);
 
     async function getComicData(pageNum) {
-        const response = await fetch("http://localhost:3001/comics/latest_updated", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                limit: 25,
-                page: pageNum
-            })
-        })
+        const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/latest_updated?limit=25&page=${page}`, { cache: 'no-store' })
         .then(res => res.json())
         if(!response.data) return setHasFinished(true);
         if(response.data.length < 25) setHasFinished(true);
