@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import logoSrc from "../../public/logo.png"
+
 export default function Footer() {
     return(
         <div className="w-full text-white bg-themeLinearGradient transition-colors">
@@ -8,7 +10,7 @@ export default function Footer() {
                 <Image
                     width={168}
                     height={120}
-                    src="/logo.png"
+                    src={logoSrc}
                     alt="Apex Manga - Logo"/>
                 <ul className="flex font-poppin">
                 <li className="my-3 mx-5"><Link href="/">Home</Link></li>

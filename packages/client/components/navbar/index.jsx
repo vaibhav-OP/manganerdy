@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import UserProfile from "./userProfile";
 import ThemeToggleBtn from "./themeToggleBtn";
 
+import logoSrc from "../../public/logo.png";
+
 export default function Navbar() {
     const [searchValue, setSearchValue] = useState("");
     const router = useRouter();
@@ -56,7 +58,7 @@ export default function Navbar() {
                     <Image
                         width={120}
                         height={72}
-                        src="/logo.png"
+                        src={logoSrc}
                         alt="Apex Manga - Logo"/>
                 </Link>
                 <div className="flex text-white px-3 h-[40px]">
