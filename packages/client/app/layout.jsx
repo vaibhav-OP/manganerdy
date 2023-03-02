@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
-import '../styles/output.css';
+import '../styles/globals.css';
 import "react-toastify/dist/ReactToastify.css";
 
 export default function RootLayout({ children }) {
