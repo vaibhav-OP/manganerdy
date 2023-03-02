@@ -39,6 +39,7 @@ export default function ThemeToggleBtn() {
 			setCurrectImg(sunSrc)
 		}
 	}, [])
+
 	return <div className="flex items-center gap-1 cursor-pointer select-none" onClick={toggleTheme}>
 		<Image
 			src={currentImg}

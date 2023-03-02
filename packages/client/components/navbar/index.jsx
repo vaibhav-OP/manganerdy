@@ -12,18 +12,9 @@ import ThemeToggleBtn from "./themeToggleBtn";
 import logoSrc from "../../public/logo.png";
 
 export default function Navbar() {
-    const [searchValue, setSearchValue] = useState("");
     const router = useRouter();
 
-    const checkLastTheme = () => {
-        const theme = window.localStorage.getItem("theme");
-
-        if(theme == "dark") return document.body.classList.add("dark");
-    };
-
-    useEffect(() => {
-        checkLastTheme()
-    }, []);
+    const [searchValue, setSearchValue] = useState("");
 
     function handleChange(e) {
         setSearchValue(e.target.value);
@@ -36,9 +27,10 @@ export default function Navbar() {
         if(value === "") return router.push("/");
         router.push("/search?title=" + value);
     }
+
     return (
         <div>
-            <div className="py-4 px-4 justify-end bg-darkColorBg text-white flex gap-4">
+            <div className="px-4 items-center justify-end h-11 bg-darkColorBg text-white flex gap-4">
                 <div className="flex gap-4">
                     <span className="font-semibold text-base">Follow us:</span>
                     <Link href="https://discord.gg/qEqrCUttVW" className="flex items-center gap-1">
