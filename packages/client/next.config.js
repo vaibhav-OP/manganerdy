@@ -6,7 +6,6 @@ const nextConfig = {
     domains: [process.env.NEXT_PUBLIC_serverName]
   },
   experimental: {
-    transpilePackages: ["ui"],
     appDir: true,
   },
 }
