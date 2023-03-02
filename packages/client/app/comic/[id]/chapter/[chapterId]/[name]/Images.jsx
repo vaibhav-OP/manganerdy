@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import './Active.css'
+
+import './Active.css';
 
 export default function Images({ data }) {
     const BarsContainer = useRef(null);

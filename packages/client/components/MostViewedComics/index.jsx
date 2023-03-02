@@ -11,7 +11,7 @@ function ComicContainer({ comic }) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-        <div className="w-[150px]">
+        <div className="w-[150px] snap-start">
             <div className="rounded-md shadow-xl overflow-hidden h-[197px] w-[150px] hover:cursor-pointer relative">
                 <Link href={`/comic/${comic._id}`}>
                     {!isLoaded && <ImageSkeleton />}
@@ -60,7 +60,7 @@ export default function MostViewed({ mostViewedComics }) {
                     <div className="w-10 h-8 flex justify-center items-center transition-all duration-300 text-gray-800 hover:text-black dark:text-slate-400 dark:hover:text-white hover:cursor-pointer hover:scale-150" onClick={moveRight}><MdOutlineKeyboardArrowRight /></div>
                 </div>
             </div>
-            <div className="flex overflow-x-auto gap-5 noScrollBar px-4" ref={wrapperUl}>{comics}</div>
+            <div className="flex overflow-x-auto gap-5 noScrollBar px-4 snap-mandatory snap-x" ref={wrapperUl}>{comics}</div>
         </div>
     )
 }
