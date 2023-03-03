@@ -10,6 +10,9 @@ export default async function ComicPage({ params }) {
     const comicData = await getComicData(params.id);
     if(!comicData) notFound();
 
+    const updatedOn = new Date(comicData?.updatedAt).toLocaleString('en-GB');
+    const publishedOn = new Date(comicData?.createdAt).toLocaleString('en-GB');
+
     const chapters = comicData?.chapters?.chapters?.map((chapter, index) => {
         return <Link href={`/comic/${params.id}/chapter/${comicData.chapters._id}/${chapter.name}`} key={index}>
                 <li id={`${chapter.name.toLowerCase()}`}
@@ -27,15 +30,37 @@ export default async function ComicPage({ params }) {
             <div
                 style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
                 className="relative bg-cover bg-center bg-no-repeat">
-                <div className="h-4/5 w-full text-white px-7 py-10 grid gap-1 sm:grid-cols-[200px_minmax(auto,1fr)] bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm">
-                    <div className="h-64 w-44 relative rounded-md overflow-hidden">
+                <div className="h-4/5 w-full text-white px-7 py-10 flex gap-5 lg:flex-row flex-col bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm lg:items-start items-center">
+                    <div className="h-64 relative rounded-md overflow-hidden min-w-[208px] w-52">
                         <ComicImage src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
                                     alt={comicData?.title}
                         />
                     </div>
-                    <div className="text-white/80">
+                    <div className="text-white/80 flex flex-col gap-5 max-w-5xl">
                         <h1 className="font-medium text-4xl text-white">{comicData?.title}</h1>
                         <div><span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/></div>
+                    </div>
+                    <div className='lg:flex hidden flex-col'>
+                        <div className='flex gap-2 items-center'>
+                            <h3 className='font-semibold text-base'>Author:</h3>
+                            <span>{comicData.authorName}</span>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                            <h3 className='font-semibold text-base'>Updated:</h3>
+                            <span>{updatedOn}</span>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                            <h3 className='font-semibold text-base'>Published:</h3>
+                            <span>{publishedOn}</span>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                            <h3 className='font-semibold text-base'>Genre:</h3>
+                            <div>
+                                {comicData?.genre.map((genre, index) => {
+                                    return <span key={index}>{genre}, </span>
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
