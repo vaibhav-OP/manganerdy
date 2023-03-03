@@ -28,7 +28,7 @@ export default function LoadMore({ setComicArray }) {
         <div className="px-4 w-full mt-4 shadow-xl">
             <div className="py-2 transition-all rounded-md mb-5 mt-2 mx-auto flex text-2xl w-fit px-5 justify-center dark:bg-[#213243] dark:text-slate-200 text-white bg-themeColor items-center">
                 { isLoading && <span className="w-fit h-fit animate-spin mr-2"><CgSpinnerTwo /></span> }
-                <button className="text-xl disable" onClick={handleClick} disabled={isLoading}>Show more comics</button>
+                <button className="text-xl disable" onClick={handleClick} disabled={isLoading}>Load more</button>
             </div>
         </div>
     )
