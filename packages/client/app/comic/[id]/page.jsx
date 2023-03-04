@@ -39,7 +39,10 @@ export default async function ComicPage({ params }) {
                         </div>
                         <div className="text-white/80 flex flex-col gap-5 max-w-5xl">
                             <h1 className="font-medium text-4xl text-white">{comicData?.title}</h1>
-                            <div className='max-h-36 overflow-y-scroll'><span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/></div>
+                            <div className='max-h-36 overflow-y-scroll
+                                            scrollbar-thin scrollbar-w-1 scrollbar-thumb-rounded-sm scrollbar-thumb-[#302b63]'>
+                                <span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/>
+                            </div>
                         </div>
                     </div>
                     <div className='lg:flex hidden flex-col'>
