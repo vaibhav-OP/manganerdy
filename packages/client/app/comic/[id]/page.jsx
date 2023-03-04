@@ -31,16 +31,18 @@ export default async function ComicPage({ params }) {
                 style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
                 className="relative bg-cover bg-center bg-no-repeat">
                 <div className="h-4/5 w-full text-white px-7 py-10 flex gap-5 lg:flex-row flex-col bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm lg:items-start items-center">
-                    <div className="h-64 relative rounded-md overflow-hidden min-w-[208px] w-52">
-                        <ComicImage src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
-                                    alt={comicData?.title}
-                        />
+                    <div className='flex gap-5 lg:items-start items-center lg:flex-row flex-col'>
+                        <div className="h-64 relative rounded-md overflow-hidden min-w-[208px] w-52">
+                            <ComicImage src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
+                                        alt={comicData?.title}
+                            />
+                        </div>
+                        <div className="text-white/80 flex flex-col gap-5 max-w-5xl">
+                            <h1 className="font-medium text-4xl text-white">{comicData?.title}</h1>
+                            <div className='max-h-36 overflow-y-scroll'><span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/></div>
+                        </div>
                     </div>
-                    <div className="text-white/80 flex flex-col gap-5 max-w-5xl">
-                        <h1 className="font-medium text-4xl text-white">{comicData?.title}</h1>
-                        <div><span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/></div>
-                    </div>
-                    <div className='2xl:flex hidden flex-col'>
+                    <div className='lg:flex hidden flex-col'>
                         <div className='flex gap-2 items-center'>
                             <h3 className='font-semibold text-base'>Author:</h3>
                             <span>{comicData.authorName}</span>
@@ -64,6 +66,30 @@ export default async function ComicPage({ params }) {
                     </div>
                 </div>
             </div>
+
+            <div className='lg:hidden grid grid-flow-col grid-cols-[1fr_1fr_1fr_1fr] justify-between bg-themeColor py-3 text-white'>
+                <div className='flex items-center flex-col border-r border-[rgba(255,255,255,.1)]  text-center'>
+                    <h3 className='font-semibold text-base'>Author</h3>
+                    <span>{comicData.authorName}</span>
+                </div>
+                <div className='flex items-center flex-col border-r border-[rgba(255,255,255,.1)]  text-center'>
+                    <h3 className='font-semibold text-base'>Updated</h3>
+                    <span>{updatedOn}</span>
+                </div>
+                <div className='flex items-center flex-col border-r border-[rgba(255,255,255,.1)]  text-center'>
+                    <h3 className='font-semibold text-base'>Published</h3>
+                    <span>{publishedOn}</span>
+                </div>
+                <div className='flex items-center flex-col text-center'>
+                    <h3 className='font-semibold text-base'>Genre</h3>
+                    <div>
+                        {comicData?.genre.map((genre, index) => {
+                            return <span key={index}>{genre}, </span>
+                        })}
+                    </div>
+                </div>
+            </div>
+
             <div className='w-full lg:w-11/12 mx-auto'>
                 <div className='sm:px-2 px-4 mt-3'>
                     <div className='border-b-8 border-themeColor flex gap-2'>
