@@ -16,7 +16,9 @@ export default async function ComicPage({ params }) {
     const chapters = comicData?.chapters?.chapters?.map((chapter, index) => {
         return <Link href={`/comic/${params.id}/chapter/${comicData.chapters._id}/${chapter.name}`} key={index}>
                 <li id={`${chapter.name.toLowerCase()}`}
-                    className='transition-all font-medium flex items-center py-3 px-4 w-full hover:text-theme cursor-pointer hover:border-l-themeColor hover:border-l-4  hover:bg-white text-base dark:border-b-[1px] border-b-black dark:hover:bg-[#2f2f2f]'>
+                    className='font-medium flex items-center py-3 px-4 w-full border-l-4 border-transparent cursor-pointer border-b-black
+                               hover:border-l-themeColor hover:bg-white text-base hover:text-theme transition-all
+                               hover:dark:bg-[#2f2f2f] hover:dark:text-white'>
                     <div className='gap-2 flex items-center'>
                         <HiOutlineBookOpen />
                         <h6 className=''>{chapter.name}</h6>
