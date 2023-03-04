@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import NotFoundImage from "../../../public/not-found.png";
 import ImageSkeleton from "../../../components/libs/imageSkeleton";
 
 export default function ComicImage({src, alt}) {
@@ -14,7 +15,7 @@ export default function ComicImage({src, alt}) {
             <Image
                 alt={alt}
                 fill
-                src={isFailed ? "/not-found.png" : src}
+                src={isFailed ? NotFoundImage : src}
                 className="object-cover"
 
                 onLoad={() => setIsLoaded(true)}

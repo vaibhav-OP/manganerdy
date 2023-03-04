@@ -2,9 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight  } from "react-icons/md";
 
 import ImageSkeleton from "../libs/imageSkeleton";
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight  } from "react-icons/md";
+import NotFoundImage from "../../public/not-found.png";
 
 function ComicContainer({ comic }) {
     const [isFailed, setIsFailed] = useState(false);
@@ -16,7 +17,7 @@ function ComicContainer({ comic }) {
                 <Link href={`/comic/${comic._id}`}>
                     {!isLoaded && <ImageSkeleton />}
                     <Image
-                        src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                        src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                         fill
                         alt={comic.title}
                         className="object-cover"

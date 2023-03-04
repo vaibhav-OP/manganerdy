@@ -2,10 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-
 import { FiUsers } from "react-icons/fi";
-import ImageSkeleton from "./imageSkeleton";
 import { IoMdPricetag } from "react-icons/io";
+
+import ImageSkeleton from "./imageSkeleton";
+import NotFoundImage from "../../public/not-found.png";
 
 export default function ComicContainer({ comic }) {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -18,7 +19,7 @@ export default function ComicContainer({ comic }) {
                 <Link href={`/comic/${comic._id}`}>
                     {!isLoaded && <ImageSkeleton /> }
                     <Image
-                        src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                        src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                         alt={comic.title}
                         fill
                         className="object-cover"

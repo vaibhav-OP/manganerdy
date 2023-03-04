@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import ImageSkeleton from "../libs/imageSkeleton";
+import NotFoundImage from "../../public/not-found.png";
 import SlideChangerButtons from "./slideChangerButtons";
 
 export default function LatestCreated({ latestComics }) {
@@ -85,9 +86,8 @@ function Slide({ comic }) {
                                     alt={comic.title}
                                     height="224"
                                     width="176"
-                                    className="rounded-md object-cover"
-                                    src={isFailed ? "/not-found.png" : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-
+                                    className="rounded-md object-cover h-56"
+                                    src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                                     onLoad={() => setIsLoaded(true)}
                                     onError={() => {setIsLoaded(false); setIsFailed(true)}}
                                 />

@@ -40,7 +40,7 @@ export default async function ComicPage({ params }) {
                         <h1 className="font-medium text-4xl text-white">{comicData?.title}</h1>
                         <div><span dangerouslySetInnerHTML={{__html: comicData?.description || "nothing"}}/></div>
                     </div>
-                    <div className='lg:flex hidden flex-col'>
+                    <div className='2xl:flex hidden flex-col'>
                         <div className='flex gap-2 items-center'>
                             <h3 className='font-semibold text-base'>Author:</h3>
                             <span>{comicData.authorName}</span>
