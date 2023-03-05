@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </head>
-      <body className={ theme.value==="dark"?"dark":"" +" text-sm"}>
+      <body className={ theme?.value==="dark"?"dark":"" +" text-sm"}>
         <Navbar />
         <div className='w-full py-6 dark:bg-[#10171E] dark:text-white min-h-[calc(100vh-112px)]'>{children}</div>
         <Footer />
