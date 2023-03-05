@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   const theme = cookieStore.get('theme');
 
   return (
-    <html>
+    <html lang="en">
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </head>
