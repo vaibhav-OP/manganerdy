@@ -44,7 +44,9 @@ export default function ThemeToggleBtn() {
 		<Image
 			src={currentImg}
 			height="24"
-			width="24"/>
+			width="24"
+			alt="darkmode toggle button"
+			priority/>
 		<span>{nextTheme}</span>
 	</div>
 }

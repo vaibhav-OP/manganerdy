@@ -11,7 +11,8 @@ export default function Footer() {
                     width={168}
                     height={120}
                     src={logoSrc}
-                    alt="Apex Manga - Logo"/>
+                    alt="Apex Manga - Logo"
+                    priority/>
                 <ul className="flex font-poppin">
                 <li className="my-3 mx-5"><Link href="/">Home</Link></li>
                     <li className="my-3 mx-5"><Link href="/dmca">DMCA</Link></li>

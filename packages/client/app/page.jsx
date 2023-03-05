@@ -1,6 +1,8 @@
+import dynamic from 'next/dynamic';
+
 import LatestCreated from '../components/latestCreated';
-import LatestUpdated from '../components/latestUpdated';
-import MostViewedComics from "../components/MostViewedComics";
+const LatestUpdated = dynamic(()=>import("../components/latestUpdated"));
+const MostViewedComics = dynamic(()=>import("../components/MostViewedComics"));
 
 export default async function HomePage() {
   const latestComics = await getLatestComics();
@@ -47,7 +49,7 @@ async function getMostViewedComics() {
 
 // last section is the latest onces updated
 async function getLatestUpdatedComics() {
-  const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_updated?limit=25&page=0", { cache: 'no-store' })
+  const response = await fetch(process.env.NEXT_PUBLIC_serverURL + "/comics/latest_updated?limit=15&page=0", { cache: 'no-store' })
     .then(res => res.json())
     .catch((error) => { console.log(error) });
 

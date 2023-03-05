@@ -7,10 +7,10 @@ export default function LoadMore({ setComicArray }) {
     const [hasFinished, setHasFinished] = useState(false);
 
     async function getComicData(pageNum) {
-        const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/latest_updated?limit=25&page=${page}`, { cache: 'no-store' })
+        const response = await fetch(process.env.NEXT_PUBLIC_serverURL + `/comics/latest_updated?limit=15&page=${page}`, { cache: 'no-store' })
         .then(res => res.json())
         if(!response.data) return setHasFinished(true);
-        if(response.data.length < 25) setHasFinished(true);
+        if(response.data.length < 15) setHasFinished(true);
         setIsLoading(false)
         setComicArray(oldEle => [...oldEle, ...response.data])
     }

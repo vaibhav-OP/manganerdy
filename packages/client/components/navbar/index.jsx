@@ -51,7 +51,8 @@ export default function Navbar() {
                         width={120}
                         height={72}
                         src={logoSrc}
-                        alt="Apex Manga - Logo"/>
+                        alt="Apex Manga - Logo"
+                        priority/>
                 </Link>
                 <div className="flex text-white px-3 h-[40px]">
                     <input
