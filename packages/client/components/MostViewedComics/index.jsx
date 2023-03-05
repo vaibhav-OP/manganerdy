@@ -18,7 +18,8 @@ function ComicContainer({ comic }) {
                     {!isLoaded && <ImageSkeleton />}
                     <Image
                         src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-                        fill
+                        width="150"
+                        height="197"
                         alt={comic.title}
                         className="object-cover"
                         onLoad={() => setIsLoaded(true)}
