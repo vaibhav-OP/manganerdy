@@ -77,7 +77,8 @@ function Slide({ comic, index }) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return <div className="bg-no-repeat bg-cover bg-center w-full h-full shrink-0 text-white sm:mr-0 mr-4 relative bg-themeColor">
-                <Image
+                <Image 
+                    alt={comic.title}
                     src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                     fill
                     className="object-cover object-center"
