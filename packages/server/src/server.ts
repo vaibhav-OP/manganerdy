@@ -17,7 +17,10 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public', {
+    maxAge: 60 * 60 * 24
+
+}));
 
 // connecting mongoose from the url
 mongoose.set('strictQuery', false);
