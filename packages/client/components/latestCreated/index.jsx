@@ -64,7 +64,7 @@ export default function LatestCreated({ latestComics }) {
                 onTouchMove={handleTouchMove}
                 onTouchStart={handleTouchStart}>
             {latestComics?.map((comic, index) => {
-                return <Slide comic={comic} key={index}/>
+                return <Slide comic={comic} index={index} key={index}/>
             })}
             </div>
             {(latestComics.length !== 0) && <SlideChangerButtons currentSlide={currentSlide} setcurrentSlide={setcurrentSlide} ulElement={ulElement}/>}
@@ -72,7 +72,7 @@ export default function LatestCreated({ latestComics }) {
     )
 }
 
-function Slide({ comic }) {
+function Slide({ comic, index }) {
     const [isFailed, setIsFailed] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -81,7 +81,7 @@ function Slide({ comic }) {
                     src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                     fill
                     className="object-cover object-center"
-                    priority/>
+                    priority={index==0 ? true : false}/>
                 <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
                     <div className="h-56 min-w-[176px] relative rounded-md overflow-hidden">
                         <Link href={`/comic/${comic._id}`}>
