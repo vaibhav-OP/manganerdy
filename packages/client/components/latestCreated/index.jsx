@@ -76,36 +76,40 @@ function Slide({ comic }) {
     const [isFailed, setIsFailed] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    return <div className="bg-no-repeat bg-cover bg-center w-full h-full relative shrink-0 text-white sm:mr-0 mr-4"
-                style={{ backgroundImage: `url("${process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}")`}}>
-                    <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
-                        <div className="h-56 min-w-[176px] relative rounded-md overflow-hidden">
+    return <div className="bg-no-repeat bg-cover bg-center w-full h-full shrink-0 text-white sm:mr-0 mr-4 relative bg-themeColor">
+                <Image
+                    src={process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                    fill
+                    className="object-cover object-center"
+                />
+                <div className="h-full backdrop-blur-sm px-5 py-6 flex gap-4 items-center bg-gradient-to-tr from-black to-black/40">
+                    <div className="h-56 min-w-[176px] relative rounded-md overflow-hidden">
+                        <Link href={`/comic/${comic._id}`}>
+                            {!isLoaded && <ImageSkeleton />}
+                            <Image
+                                alt={comic.title}
+                                height="224"
+                                width="176"
+                                className="rounded-md object-cover h-56"
+                                src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
+                                onLoad={() => setIsLoaded(true)}
+                                onError={() => {setIsLoaded(false); setIsFailed(true)}}
+                            />
+                        </Link>
+                    </div>
+                    <div className="h-full flex flex-col justify-between py-5">
+                        <div className="flex flex-col gap-2">
                             <Link href={`/comic/${comic._id}`}>
-                                {!isLoaded && <ImageSkeleton />}
-                                <Image
-                                    alt={comic.title}
-                                    height="224"
-                                    width="176"
-                                    className="rounded-md object-cover h-56"
-                                    src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
-                                    onLoad={() => setIsLoaded(true)}
-                                    onError={() => {setIsLoaded(false); setIsFailed(true)}}
-                                />
+                                <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
                             </Link>
+                            <div className="line-clamp-5">
+                                <span className="hidden md:block font-normal text-base text-white/90" dangerouslySetInnerHTML={{__html: comic.description}}/>
+                            </div>
                         </div>
-                        <div className="h-full flex flex-col justify-between py-5">
-                            <div className="flex flex-col gap-2">
-                                <Link href={`/comic/${comic._id}`}>
-                                    <h2 className="text-xl line-clamp-6 lg:text-3xl lg:line-clamp-3 font-bold">{comic.title}</h2>
-                                </Link>
-                                <div className="line-clamp-5">
-                                    <span className="hidden md:block font-normal text-base text-white/90" dangerouslySetInnerHTML={{__html: comic.description}}/>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="text-lg italic">{comic.authorName}</h3>
-                            </div>
+                        <div>
+                            <h3 className="text-lg italic">{comic.authorName}</h3>
                         </div>
                     </div>
+                </div>
             </div>
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
@@ -29,9 +30,11 @@ export default async function ComicPage({ params }) {
 
     return (
         <div className='pb-6 dark:text-white'>
-            <div
-                style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation})` }}
-                className="relative bg-cover bg-center bg-no-repeat">
+            <div className="relative bg-cover bg-center bg-no-repeat bg-themeColor">
+                <Image
+                    src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
+                    fill
+                    className="object-cover object-center"/>
                 <div className="h-4/5 w-full text-white px-7 py-10 flex gap-5 lg:flex-row flex-col bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm lg:items-start items-center">
                     <div className='flex gap-5 lg:items-start items-center lg:flex-row flex-col'>
                         <div className="h-64 relative rounded-md overflow-hidden min-w-[208px] w-52">
