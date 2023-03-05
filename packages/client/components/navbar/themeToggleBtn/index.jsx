@@ -10,26 +10,27 @@ export default function ThemeToggleBtn() {
 	const [currentImg, setCurrectImg] = useState(sunSrc);
 
 	function toggleTheme() {
-		const bodyEl = document.body
+		const bodyEl = document.body;
+
 		if(bodyEl.classList.contains("dark")) {
         	bodyEl.classList.remove("dark");
 
 			setNextTheme("Dark Mode");
 			setCurrectImg(moonSrc)
 
-			window.localStorage.setItem("theme", "light");
+			document.cookie = "theme=light";
 		} else {
         	bodyEl.classList.add("dark");
 
 			setNextTheme("Light Mode");
 			setCurrectImg(sunSrc)
 
-			window.localStorage.setItem("theme", "dark");
+			document.cookie = "theme=dark";
 		}
 	}
 
 	useEffect(() => {
-		const theme = window.localStorage.getItem("theme")
+		const theme = window.localStorage.getItem("theme");
 
 		if(theme === "dark") {
 			setNextTheme("Light Mode")
