@@ -21,8 +21,9 @@ export default function ComicContainer({ comic }) {
                     <Image
                         src={isFailed ? NotFoundImage : process.env.NEXT_PUBLIC_serverURL + comic.profilePhotoLocation}
                         alt={comic.title}
-                        fill
-                        className="object-cover"
+                        width="120"
+                        height="167"
+                        className="object-cover object-center"
                         onLoad={() => setIsLoaded(true)}
                         onError={() => {setIsLoaded(false); setIsFailed(true)}}
                     />

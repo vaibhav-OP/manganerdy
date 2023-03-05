@@ -34,8 +34,7 @@ export default async function ComicPage({ params }) {
                 <Image
                     src={process.env.NEXT_PUBLIC_serverURL + comicData?.profilePhotoLocation}
                     fill
-                    className="object-cover object-center"
-                    priority/>
+                    className="object-cover object-center"/>
                 <div className="h-4/5 w-full text-white px-7 py-10 flex gap-5 lg:flex-row flex-col bg-gradient-to-tr from-black to-black/40 backdrop-blur-sm lg:items-start items-center">
                     <div className='flex gap-5 lg:items-start items-center lg:flex-row flex-col'>
                         <div className="h-64 relative rounded-md overflow-hidden min-w-[208px] w-52">
