@@ -13,7 +13,8 @@
 - 🟩 Basic Search.
 - 🟩 Easy navigation with chapters.
 
-### To be added
+### To be added- 
+- 🟥 Prefix Image before every chapter image.
 - 🟥 Advance Search.
 - 🟥 View counting system.
 - 🟥 User Authentication.
