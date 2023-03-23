@@ -111,7 +111,8 @@ export default async function ComicPage({ params }) {
             
             <div id="disqus_thread"></div>
 
-<Script strategy="afterInteractive"
+<Script id="discuss-chat"
+  strategy="lazyOnload"
   dangerouslySetInnerHTML={{
     __html: `(function() {
     var d = document, s = d.createElement('script');
