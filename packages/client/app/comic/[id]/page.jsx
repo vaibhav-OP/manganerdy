@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script'
 import { notFound } from "next/navigation";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
@@ -110,7 +111,7 @@ export default async function ComicPage({ params }) {
             
             <div id="disqus_thread"></div>
 
-<script>
+<Script>
 
     (function() {
     var d = document, s = d.createElement('script');
@@ -123,7 +124,7 @@ export default async function ComicPage({ params }) {
 
     })();
 
-</script>
+</Script>
         </div>
     )
 }
