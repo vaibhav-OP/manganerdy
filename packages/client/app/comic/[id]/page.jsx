@@ -111,9 +111,9 @@ export default async function ComicPage({ params }) {
             
             <div id="disqus_thread"></div>
 
-<Script>
-
-    (function() {
+<Script strategy="afterInteractive"
+  dangerouslySetInnerHTML={{
+    __html: `(function() {
     var d = document, s = d.createElement('script');
 
     s.src = 'https://manganerdy.disqus.com/embed.js';
@@ -122,9 +122,10 @@ export default async function ComicPage({ params }) {
 
     (d.head || d.body).appendChild(s);
 
-    })();
+    })();`
+    }}
 
-</Script>
+/>
         </div>
     )
 }
